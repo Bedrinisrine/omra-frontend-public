@@ -138,6 +138,32 @@
 
 /* Very small screens */
 @media screen and (max-width: 768px) {
+  /* Force all cards to stack vertically - Override inline styles */
+  #packagesRow .package-card,
+  #hotelsRow .hotel-card,
+  div[ngStyle*="display: 'inline-block'"],
+  div[style*="display: inline-block"] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px !important;
+    vertical-align: top !important;
+  }
+
+  /* Force scrollable containers to stack */
+  div[style*="overflow-x: auto"][style*="white-space: nowrap"],
+  div#packagesRow,
+  div#hotelsRow,
+  div#servicesRow {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-x: visible !important;
+    white-space: normal !important;
+    width: 100% !important;
+    gap: 20px !important;
+    padding: 0 15px !important;
+  }
   html {
     font-size: 13px !important;
   }

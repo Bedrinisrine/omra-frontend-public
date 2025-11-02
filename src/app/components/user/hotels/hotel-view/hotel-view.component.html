@@ -232,7 +232,7 @@
         <div class="hotel-list" *ngIf="!loading && filteredHotels.length > 0">
           <div *ngFor="let hotel of filteredHotels" class="hotel-item">
             <div class="hotel-image-container">
-      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : 'assets/images/no-image.png'" 
+      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : '/assets/images/hotel3.jpg'" onerror="this.src='/assets/images/hotel3.jpg'" 
            [alt]="hotel.nom_hotels" 
                      class="hotel-item-image">
                      <!-- Image navigation (optional, similar to modal) can be added here if needed -->
@@ -288,7 +288,7 @@
         
         <!-- Image Gallery -->
         <div class="image-gallery">
-          <img [src]="selectedHotel.images && selectedHotel.images.length > 0 ? getImageUrl(selectedHotel.images[currentImageIndex].image) : 'assets/images/no-image.png'" 
+          <img [src]="selectedHotel.images && selectedHotel.images.length > 0 ? getImageUrl(selectedHotel.images[currentImageIndex].image) : '/assets/images/hotel3.jpg'" onerror="this.src='/assets/images/hotel3.jpg'" 
                [alt]="selectedHotel.nom_hotels" 
                class="modal-image">
           

@@ -1,7 +1,7 @@
 <div class="hotel-list">
   <div *ngFor="let hotel of hotels" class="hotel-item">
     <div class="hotel-image-container">
-      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : 'assets/images/no-image.png'" 
+      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : '/assets/images/hotel3.jpg'" onerror="this.src='/assets/images/hotel3.jpg'" 
            [alt]="hotel.nom_hotels" 
            class="hotel-item-image">
     </div>
