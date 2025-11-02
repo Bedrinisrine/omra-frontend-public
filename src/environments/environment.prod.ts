@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://217.160.21.217:8000'
+  apiUrl: '' // Empty to use static data in production, or set your Render backend URL here
 };
 

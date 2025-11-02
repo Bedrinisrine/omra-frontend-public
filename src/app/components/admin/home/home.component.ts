@@ -2,6 +2,7 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-admin-home',
@@ -34,8 +35,14 @@ export class AdminHomeComponent implements OnInit {
   }
 
   loadFeedbacks() {
+    if (!environment.apiUrl) {
+      this.loading = false;
+      this.error = '';
+      this.feedbacks = [];
+      return;
+    }
     this.loading = true;
-    this.http.get<any[]>('http://localhost:8000/hotels/feedback/?all=1').subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}/hotels/feedback/?all=1`).subscribe({
       next: (data) => {
         this.feedbacks = data;
         this.loading = false;
@@ -48,7 +55,8 @@ export class AdminHomeComponent implements OnInit {
   }
 
   approveFeedback(id: number) {
-    this.http.patch(`http://localhost:8000/hotels/feedback/${id}/`, { approved: true }).subscribe({
+    if (!environment.apiUrl) return;
+    this.http.patch(`${environment.apiUrl}/hotels/feedback/${id}/`, { approved: true }).subscribe({
       next: () => this.loadFeedbacks(),
       error: () => alert('Erreur lors de l\'approbation de l\'avis.')
     });
