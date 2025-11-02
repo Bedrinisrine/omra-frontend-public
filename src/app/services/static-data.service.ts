@@ -45,11 +45,11 @@ export class StaticDataService {
         date_fin: "2025-12-10",
         ville_depart: "Paris",
         qte_package: 25,
-        images: [{ image: "/media/packages/images/omralogo.jpg" }],
+        images: [{ image: "assets/images/kaaba.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -62,11 +62,11 @@ export class StaticDataService {
         date_fin: "2025-11-22",
         ville_depart: "Lyon",
         qte_package: 15,
-        images: [{ image: "/media/packages/images/omralogo.jpg" }],
+        images: [{ image: "assets/images/kaaba.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -79,11 +79,11 @@ export class StaticDataService {
         date_fin: "2026-01-04",
         ville_depart: "Marseille",
         qte_package: 30,
-        images: [{ image: "/media/packages/images/madina_almunawwarah.jpg" }],
+        images: [{ image: "assets/images/madina almunawwarah.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -96,11 +96,11 @@ export class StaticDataService {
         date_fin: "2025-03-15",
         ville_depart: "Paris",
         qte_package: 20,
-        images: [{ image: "/media/packages/images/omralogo.jpg" }],
+        images: [{ image: "assets/images/kaaba.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -113,11 +113,11 @@ export class StaticDataService {
         date_fin: "2025-11-12",
         ville_depart: "Paris",
         qte_package: 40,
-        images: [{ image: "/media/packages/images/omralogo.jpg" }],
+        images: [{ image: "assets/images/kaaba.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -130,11 +130,11 @@ export class StaticDataService {
         date_fin: "2025-12-20",
         ville_depart: "Paris",
         qte_package: 10,
-        images: [{ image: "/media/packages/images/omralogo.jpg" }],
+        images: [{ image: "assets/images/kaaba.jpg" }],
         agence: {
           id: 1,
           nomagence: "Agence El Hijaz",
-          logo_agence: "/media/packages/images/omralogo.jpg",
+          logo_agence: "assets/images/omralogo.jpg",
           adr_agence: "Paris, France",
           tel: 33123456789
         }
@@ -153,7 +153,7 @@ export class StaticDataService {
         ville_arr: "Makkah",
         distance_haram: 0.2,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel1.jpg" }]
+        images: [{ image: "assets/images/hotel3.jpg" }]
       },
       {
         id: 2,
@@ -164,7 +164,7 @@ export class StaticDataService {
         ville_arr: "Makkah",
         distance_haram: 0.1,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel2.jpg" }]
+        images: [{ image: "assets/images/hotelimage.jpg" }]
       },
       {
         id: 3,
@@ -175,7 +175,7 @@ export class StaticDataService {
         ville_arr: "Madinah",
         distance_haram: 0.3,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel3.jpg" }]
+        images: [{ image: "assets/images/hotel3.jpg" }]
       },
       {
         id: 4,
@@ -186,7 +186,7 @@ export class StaticDataService {
         ville_arr: "Makkah",
         distance_haram: 0.15,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel1.jpg" }]
+        images: [{ image: "assets/images/hotel3.jpg" }]
       },
       {
         id: 5,
@@ -197,7 +197,7 @@ export class StaticDataService {
         ville_arr: "Madinah",
         distance_haram: 0.25,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel2.jpg" }]
+        images: [{ image: "assets/images/hotelimage.jpg" }]
       },
       {
         id: 6,
@@ -208,7 +208,7 @@ export class StaticDataService {
         ville_arr: "Makkah",
         distance_haram: 0.05,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel3.jpg" }]
+        images: [{ image: "assets/images/hotel3.jpg" }]
       },
       {
         id: 7,
@@ -219,7 +219,7 @@ export class StaticDataService {
         ville_arr: "Madinah",
         distance_haram: 0.4,
         nbr_etoile: 4,
-        images: [{ image: "/media/hotels/images/hotel1.jpg" }]
+        images: [{ image: "assets/images/hotel3.jpg" }]
       },
       {
         id: 8,
@@ -230,7 +230,7 @@ export class StaticDataService {
         ville_arr: "Makkah",
         distance_haram: 0.12,
         nbr_etoile: 5,
-        images: [{ image: "/media/hotels/images/hotel2.jpg" }]
+        images: [{ image: "assets/images/hotelimage.jpg" }]
       }
     ];
   }
