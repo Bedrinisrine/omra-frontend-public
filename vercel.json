@@ -2,13 +2,26 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/hotels_front/browser",
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
+      "source": "/user/:path*",
+      "destination": "/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/admin/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
