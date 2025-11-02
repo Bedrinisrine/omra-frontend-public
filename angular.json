@@ -31,6 +31,7 @@
             "styles": [
               "src/styles.css",
               "src/mobile-override.css",
+              "src/mobile-fix.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],

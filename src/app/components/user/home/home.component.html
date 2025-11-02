@@ -53,14 +53,14 @@
     <!-- Filter Bar -->
     <div class="filter-bar-container">
       <div class="filter-bar-modern">
-        <div class="filter-tabs-modern">
-          <button class="tab-button-modern" [class.active]="selectedTab === 'package'" (click)="setTab('package')">
+        <div class="filter-tabs-modern mobile-stack">
+          <button class="tab-button-modern mobile-full-width" [class.active]="selectedTab === 'package'" (click)="setTab('package')">
             <i class="fas fa-box"></i> Forfait
           </button>
-          <button class="tab-button-modern" [class.active]="selectedTab === 'hotel'" (click)="setTab('hotel')">
+          <button class="tab-button-modern mobile-full-width" [class.active]="selectedTab === 'hotel'" (click)="setTab('hotel')">
             <i class="fas fa-hotel"></i> Hôtels
           </button>
-          <button class="tab-button-modern" [class.active]="selectedTab === 'flight'" (click)="setTab('flight')">
+          <button class="tab-button-modern mobile-full-width" [class.active]="selectedTab === 'flight'" (click)="setTab('flight')">
             <i class="fas fa-plane"></i> Vols
           </button>
         </div>

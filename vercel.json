@@ -1,22 +1,28 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/hotels_front/browser",
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
+      "source": "/user",
+      "destination": "/index.html"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "source": "/user/(.*)",
+      "destination": "/index.html"
     },
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "dest": "/$1"
+      "source": "/admin",
+      "destination": "/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/admin/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

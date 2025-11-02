@@ -1,0 +1,145 @@
+/* Ultra-Aggressive Mobile Fixes - MUST Load After All Other CSS */
+
+/* Force filter tabs to stack on mobile - Highest Priority */
+@media screen and (max-width: 1024px) {
+  .filter-tabs-modern.mobile-stack,
+  .filter-tabs-modern {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    margin-bottom: 16px !important;
+    padding: 0 !important;
+  }
+
+  .tab-button-modern.mobile-full-width,
+  .tab-button-modern {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    padding: 12px 16px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 0.95rem !important;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    flex: 1 1 100% !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Prevent any horizontal overflow */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    position: relative !important;
+  }
+
+  /* Force filter bar container */
+  .filter-bar-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    margin: 0 !important;
+  }
+
+  /* Force filter bar */
+  .filter-bar-modern {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 15px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  /* Force tabs to stack */
+  .filter-tabs-modern,
+  .filter-tabs-modern.mobile-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    margin: 0 0 16px 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force each button to full width */
+  .tab-button-modern,
+  .tab-button-modern.mobile-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    flex: 0 0 auto !important;
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Force inputs to stack */
+  .filter-inputs-modern {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .input-group-modern {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+
+  .btn-search-modern {
+    width: 100% !important;
+    margin: 10px 0 0 0 !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tab-button-modern {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .filter-bar-modern {
+    padding: 10px 12px !important;
+  }
+
+  .filter-bar-container {
+    padding: 0 8px !important;
+  }
+}
+
+/* Override ANY conflicting styles */
+@media screen and (max-width: 768px) {
+  /* Target any flex container that might be causing issues */
+  div[class*="filter"] {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Prevent any element from exceeding viewport */
+  * {
+    max-width: 100vw !important;
+  }
+
+  /* Specifically target filter tabs */
+  .filter-tabs-modern * {
+    max-width: 100% !important;
+  }
+}
+
