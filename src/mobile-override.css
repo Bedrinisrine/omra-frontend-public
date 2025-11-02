@@ -1,0 +1,113 @@
+/* Aggressive Mobile Overrides - Force Responsive Layout */
+
+@media (max-width: 768px) {
+  /* Force all elements to fit screen width */
+  * {
+    box-sizing: border-box !important;
+  }
+
+  /* Override ALL fixed widths in inline styles */
+  [style*="width: 340px"],
+  [style*="width: 400px"],
+  [style*="width: 900px"],
+  [style*="width: 1000px"],
+  [style*="width: 1200px"],
+  [style*="max-width: 1200px"],
+  [style*="max-width: 1000px"],
+  [style*="max-width: 900px"],
+  [style*="max-width: 650px"],
+  [style*="min-width: 240px"],
+  [style*="min-width: 320px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+  }
+
+  /* Force flex containers to stack vertically */
+  [style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+
+  /* But allow horizontal for specific cases */
+  div[style*="overflow-x: auto"] {
+    flex-direction: row !important;
+    overflow-x: scroll !important;
+  }
+
+  /* Fix padding and margins */
+  [style*="padding: 0 40px"],
+  [style*="padding: 40px"] {
+    padding: 15px !important;
+  }
+
+  [style*="margin: 40px 0"],
+  [style*="margin: 60px 0"] {
+    margin: 20px 0 !important;
+  }
+
+  /* Fix text sizes */
+  [style*="font-size: 2.1rem"],
+  [style*="font-size: 2.5rem"],
+  [style*="font-size: 2.7rem"] {
+    font-size: 1.5rem !important;
+  }
+
+  [style*="font-size: 1.15rem"],
+  [style*="font-size: 1.2rem"],
+  [style*="font-size: 1.13rem"] {
+    font-size: 1rem !important;
+  }
+
+  /* Fix image heights */
+  [style*="height: 340px"],
+  [style*="height: 400px"] {
+    height: auto !important;
+    min-height: 200px !important;
+  }
+
+  /* Fix buttons */
+  [style*="width: 40px"][style*="height: 40px"],
+  [style*="width: 48px"][style*="height: 48px"] {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* Fix gap values */
+  [style*="gap: 40px"] {
+    gap: 20px !important;
+  }
+
+  [style*="gap: 24px"] {
+    gap: 15px !important;
+  }
+
+  [style*="gap: 16px"] {
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  [style*="padding: 24px 18px"],
+  [style*="padding: 20px"] {
+    padding: 12px !important;
+  }
+
+  [style*="font-size: 1.5rem"] {
+    font-size: 1.3rem !important;
+  }
+
+  [style*="gap: 20px"] {
+    gap: 15px !important;
+  }
+
+  /* Make all buttons full width */
+  .btn,
+  button:not([style*="position: absolute"]) {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+}
+
