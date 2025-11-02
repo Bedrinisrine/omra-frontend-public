@@ -207,16 +207,25 @@ export class PackageListComponent implements OnInit {
   }
 
   getImageUrl(imagePath: string): string {
-    if (!imagePath) return 'assets/images/no-image.png';
-    if (imagePath.startsWith('http')) return imagePath;
+    if (!imagePath) return '/assets/images/kaaba.jpg';
+    // If it's already a full URL, return as is
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath;
+    }
     // If path starts with assets, use it directly (frontend asset)
-    if (imagePath.startsWith('assets/')) return `/${imagePath}`;
-    // If path starts with /media, it's a backend media path
+    if (imagePath.startsWith('assets/')) {
+      return '/' + imagePath;
+    }
+    // If path starts with /assets, return as is
+    if (imagePath.startsWith('/assets/')) {
+      return imagePath;
+    }
+    // If path starts with /media, it's a backend media path (only if API URL exists)
     if (imagePath.startsWith('/media/') && environment.apiUrl) {
       return `${environment.apiUrl}${imagePath}`;
     }
-    // Otherwise, treat as relative asset path
-    return `/${imagePath}`;
+    // Otherwise, treat as assets path
+    return '/assets/images/' + imagePath.split('/').pop();
   }
 
   showPackageDetails(packageItem: Package) {
