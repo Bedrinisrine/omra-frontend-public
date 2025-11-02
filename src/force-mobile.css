@@ -2,15 +2,20 @@
 
 /* Mobile-first: Force mobile layout for small screens */
 @media screen and (max-width: 1024px) {
-  /* Override ALL inline styles with fixed widths */
+  /* Override ALL inline styles with fixed widths - including ngStyle */
   div[style*="width: 320px"],
   div[style*="width: 900px"],
   div[style*="width: 340px"],
-  div[style*="width: 400px"] {
+  div[style*="width: 400px"],
+  .package-card[ngStyle],
+  .hotel-card[ngStyle],
+  div.package-card,
+  div.hotel-card {
     width: 100% !important;
     max-width: 100% !important;
     display: block !important;
     margin-right: 0 !important;
+    margin-bottom: 20px !important;
   }
 
   /* Force package cards container to stack */
