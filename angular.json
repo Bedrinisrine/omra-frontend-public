@@ -35,11 +35,11 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "src/mobile-override.css",
               "src/mobile-fix.css",
-              "src/force-mobile.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/force-mobile.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
