@@ -214,25 +214,45 @@ export class UserHomeComponent implements OnInit {
   }
 
   getImageUrl(imagePath: string): string {
-    if (!imagePath) return '/assets/images/kaaba.jpg';
+    if (!imagePath || imagePath.trim() === '') {
+      return '/assets/images/kaaba.jpg';
+    }
+    
     // If it's already a full URL, return as is
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
       return imagePath;
     }
-    // If path starts with assets, use it directly (frontend asset)
-    if (imagePath.startsWith('assets/')) {
-      return '/' + imagePath;
+    
+    // Normalize the path - remove leading slash if present, then add it
+    let normalizedPath = imagePath.trim();
+    
+    // If path starts with assets/, add leading slash
+    if (normalizedPath.startsWith('assets/')) {
+      return '/' + normalizedPath;
     }
-    // If path starts with /assets, return as is
-    if (imagePath.startsWith('/assets/')) {
-      return imagePath;
+    
+    // If path starts with /assets/, return as is
+    if (normalizedPath.startsWith('/assets/')) {
+      return normalizedPath;
     }
-    // If path starts with /media, it's a backend media path (only if API URL exists)
-    if (imagePath.startsWith('/media/') && environment.apiUrl) {
-      return `${environment.apiUrl}${imagePath}`;
+    
+    // If path starts with /media/, it's a backend media path (only if API URL exists)
+    if (normalizedPath.startsWith('/media/')) {
+      if (environment.apiUrl) {
+        return `${environment.apiUrl}${normalizedPath}`;
+      } else {
+        // If no API URL, use fallback image
+        return '/assets/images/kaaba.jpg';
+      }
     }
-    // Otherwise, treat as assets path
-    return '/assets/images/' + imagePath.split('/').pop();
+    
+    // If it's just a filename, assume it's in assets/images
+    if (!normalizedPath.includes('/')) {
+      return '/assets/images/' + normalizedPath;
+    }
+    
+    // Otherwise, try to treat as assets path
+    return '/assets/images/' + normalizedPath.split('/').pop();
   }
 
   showPackageDetails(packageItem: Package) {

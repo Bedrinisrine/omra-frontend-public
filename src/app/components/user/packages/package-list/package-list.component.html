@@ -148,7 +148,7 @@
       <div class="package-list" *ngIf="!loading && filteredPackages.length > 0">
         <div *ngFor="let package of filteredPackages" class="package-item">
           <div class="package-image-container">
-      <img [src]="package.images && package.images[0] ? getImageUrl(package.images[0].image) : 'assets/images/no-image.png'" 
+      <img [src]="package.images && package.images[0] ? getImageUrl(package.images[0].image) : '/assets/images/kaaba.jpg'" 
            [alt]="package.nom_pak" 
                  class="package-item-image">
           </div>

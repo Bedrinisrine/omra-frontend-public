@@ -38,6 +38,7 @@
               "src/styles.css",
               "src/mobile-override.css",
               "src/mobile-fix.css",
+              "src/force-mobile.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
