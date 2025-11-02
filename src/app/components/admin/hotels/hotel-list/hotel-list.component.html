@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Hotels</h2>
+    <button class="btn btn-primary" routerLink="/admin/hotels/add">Add New Hotel</button>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!loading">
+    <div class="col-md-4 mb-4" *ngFor="let hotel of hotels">
+      <div class="card h-100">
+        <img *ngIf="hotel.images && hotel.images.length > 0" 
+             [src]="getImageUrl(hotel.images[0].image)" 
+             class="card-img-top" 
+             [alt]="hotel.nom_hotels"
+             style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ hotel.nom_hotels }}</h5>
+          <p class="card-text">
+            <strong>Localisation:</strong> {{ hotel.localisation }}<br>
+            <strong>Stars:</strong> {{ hotel.nbr_etoile }}<br>
+            <strong>Distance to Haram:</strong> {{ hotel.distance_haram }} km<br>
+            <ng-container *ngIf="hotel.collaborators && hotel.collaborators.length > 0">
+              <strong>Collaborators:</strong> {{ hotel.collaborators.join(', ') }}
+            </ng-container>
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group w-100">
+            <button class="btn btn-primary" [routerLink]="['/admin/hotels/edit', hotel.id]">Edit</button>
+            <button class="btn btn-danger" (click)="deleteHotel(hotel.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && hotels.length === 0" class="alert alert-info">
+    No hotels found. Click "Add New Hotel" to create one.
+  </div>
+</div> 

@@ -1,0 +1,43 @@
+<div class="admin-home-container">
+  <div class="welcome-section">
+    <h1>Admin Dashboard</h1>
+    <p>Manage your hotels and packages from here.</p>
+  </div>
+
+  <div class="management-cards">
+    <div class="card" routerLink="/admin/hotels">
+      <div class="card-icon">🏨</div>
+      <h2>Manage Hotels</h2>
+      <p>Add, edit, or remove hotels from your collection. Manage hotel details, images, and availability.</p>
+      <button class="btn btn-primary">Manage Hotels</button>
+    </div>
+    
+    <div class="card" routerLink="/admin/packages">
+      <div class="card-icon">✈️</div>
+      <h2>Manage Packages</h2>
+      <p>Create and manage travel packages. Set up package details, pricing, and included services.</p>
+      <button class="btn btn-primary">Manage Packages</button>
+    </div>
+  </div>
+
+  <div class="admin-feedback-section" style="margin-top: 40px; background: #faf6ed; border-radius: 18px; padding: 32px;">
+    <h2 style="font-size: 1.5rem; color: #bfa046; font-weight: bold; margin-bottom: 18px;">Modération des avis clients</h2>
+    <div *ngIf="loading">Chargement des avis...</div>
+    <div *ngIf="error" style="color: #d32f2f;">{{error}}</div>
+    <div *ngIf="!loading && feedbacks.length === 0">Aucun avis à afficher.</div>
+    <div *ngFor="let feedback of feedbacks" style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 18px; margin-bottom: 18px; display: flex; align-items: center; gap: 18px;">
+      <img *ngIf="feedback.photo" [src]="feedback.photo" alt="{{feedback.name}}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" />
+      <div style="flex: 1;">
+        <div style="font-weight: bold; color: #222;">{{feedback.name}} <span style="color: #888; font-size: 0.95rem;">{{feedback.job_title}}</span></div>
+        <div style="margin: 6px 0; color: #444;">{{feedback.feedback}}</div>
+        <div>
+          <ng-container *ngFor="let star of [].constructor(feedback.rating)"><i class="fas fa-star" style="color: #ffd700;"></i></ng-container>
+        </div>
+        <div style="margin-top: 6px;">
+          <span *ngIf="feedback.approved" style="color: #2ecc71; font-weight: 500;">Approuvé</span>
+          <button *ngIf="!feedback.approved" (click)="approveFeedback(feedback.id)" style="background: #bfa046; color: #fff; border: none; border-radius: 16px; padding: 6px 18px; font-size: 1rem; font-weight: 500; cursor: pointer;">Approuver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

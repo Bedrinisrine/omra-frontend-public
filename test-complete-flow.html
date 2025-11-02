@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Admin Flow Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        button { margin: 5px; padding: 10px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; }
+        .step { margin: 10px 0; padding: 10px; background: #f8f9fa; border-left: 4px solid #007bff; }
+    </style>
+</head>
+<body>
+    <h1>🔐 Complete Admin Authentication Flow Test</h1>
+    
+    <div class="test-section">
+        <h2>Step 1: Clear Storage and Test Initial State</h2>
+        <button onclick="clearStorage()">Clear All Storage</button>
+        <button onclick="checkCurrentState()">Check Current State</button>
+        <div id="initial-state"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 2: Test Admin Access Without Login</h2>
+        <button onclick="testAdminAccess()">Test /admin Access</button>
+        <div id="admin-access-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 3: Login as Admin User</h2>
+        <input type="text" id="username" placeholder="Username" value="superadmin">
+        <input type="password" id="password" placeholder="Password" value="admin123">
+        <button onclick="loginAsAdmin()">Login as Admin</button>
+        <div id="login-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 4: Test Admin Access After Login</h2>
+        <button onclick="testAdminAccessAfterLogin()">Test /admin Access (After Login)</button>
+        <div id="admin-access-after-login"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 5: Test Non-Admin User</h2>
+        <button onclick="loginAsRegularUser()">Login as Regular User</button>
+        <button onclick="testAdminAccessAsRegularUser()">Test /admin as Regular User</button>
+        <div id="regular-user-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Step 6: Manual Testing Instructions</h2>
+        <div class="step">
+            <h3>Test 1: Direct Admin Access (Should Redirect to Login)</h3>
+            <p>1. Open a new incognito/private browser window</p>
+            <p>2. Go to: <a href="http://localhost:4200/admin" target="_blank">http://localhost:4200/admin</a></p>
+            <p>3. You should be redirected to: <a href="http://localhost:4200/login" target="_blank">http://localhost:4200/login</a></p>
+        </div>
+        
+        <div class="step">
+            <h3>Test 2: Login as Admin (Should Access Admin Dashboard)</h3>
+            <p>1. Go to: <a href="http://localhost:4200/login" target="_blank">http://localhost:4200/login</a></p>
+            <p>2. Login with: superadmin / admin123</p>
+            <p>3. You should be redirected to: <a href="http://localhost:4200/admin" target="_blank">http://localhost:4200/admin</a></p>
+        </div>
+        
+        <div class="step">
+            <h3>Test 3: Login as Regular User (Should NOT Access Admin)</h3>
+            <p>1. Go to: <a href="http://localhost:4200/login" target="_blank">http://localhost:4200/login</a></p>
+            <p>2. Login with: user / user123</p>
+            <p>3. You should be redirected to: <a href="http://localhost:4200/user" target="_blank">http://localhost:4200/user</a></p>
+            <p>4. Try to access: <a href="http://localhost:4200/admin" target="_blank">http://localhost:4200/admin</a></p>
+            <p>5. You should be redirected back to login</p>
+        </div>
+    </div>
+
+    <script>
+        function clearStorage() {
+            localStorage.clear();
+            sessionStorage.clear();
+            document.getElementById('initial-state').innerHTML = '<div class="success">✅ Storage cleared!</div>';
+        }
+        
+        function checkCurrentState() {
+            const token = localStorage.getItem('token');
+            const isAdmin = localStorage.getItem('isAdmin');
+            const currentUser = localStorage.getItem('currentUser');
+            
+            const state = document.getElementById('initial-state');
+            state.innerHTML = `
+                <div class="warning">
+                    <h3>Current Authentication State:</h3>
+                    <p><strong>Token:</strong> ${token ? '✅ Present' : '❌ Missing'}</p>
+                    <p><strong>isAdmin:</strong> ${isAdmin || 'Not set'}</p>
+                    <p><strong>Current User:</strong> ${currentUser ? '✅ Present' : '❌ Missing'}</p>
+                    <p><strong>Current URL:</strong> ${window.location.href}</p>
+                </div>
+            `;
+        }
+        
+        async function testAdminAccess() {
+            const result = document.getElementById('admin-access-result');
+            result.innerHTML = '<p>Testing admin access...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:4200/admin', {
+                    method: 'GET',
+                    redirect: 'manual'
+                });
+                
+                result.innerHTML = `
+                    <div class="warning">
+                        <h3>Admin Access Test Result:</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Redirected:</strong> ${response.redirected}</p>
+                        <p><strong>URL:</strong> ${response.url}</p>
+                        <p><strong>Note:</strong> This tests the initial page load. The actual protection happens in the browser after the Angular app loads.</p>
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>Error:</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function loginAsAdmin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('login-result');
+            
+            result.innerHTML = '<p>Logging in as admin...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8000/hotels/auth/login/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Simulate what the Angular app would do
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('isAdmin', data.is_staff.toString());
+                    localStorage.setItem('currentUser', JSON.stringify(data));
+                    
+                    result.innerHTML = `
+                        <div class="success">
+                            <h3>✅ Admin Login Successful!</h3>
+                            <p><strong>Username:</strong> ${data.username}</p>
+                            <p><strong>is_staff:</strong> ${data.is_staff}</p>
+                            <p><strong>Token:</strong> ${data.token ? 'Present' : 'Missing'}</p>
+                            <p><strong>Note:</strong> You can now access the admin interface</p>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="error">
+                            <h3>❌ Login Failed</h3>
+                            <p><strong>Status:</strong> ${response.status}</p>
+                            <p><strong>Error:</strong> ${data.error || data.detail || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>❌ Login Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        async function testAdminAccessAfterLogin() {
+            const result = document.getElementById('admin-access-after-login');
+            const token = localStorage.getItem('token');
+            const isAdmin = localStorage.getItem('isAdmin');
+            
+            if (!token || isAdmin !== 'true') {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>❌ Not logged in as admin</h3>
+                        <p>Please login as admin first</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            result.innerHTML = `
+                <div class="success">
+                    <h3>✅ Ready to Access Admin Interface</h3>
+                    <p><strong>Token:</strong> Present</p>
+                    <p><strong>isAdmin:</strong> true</p>
+                    <p><strong>Next Step:</strong> <a href="http://localhost:4200/admin" target="_blank">Click here to access admin</a></p>
+                </div>
+            `;
+        }
+        
+        async function loginAsRegularUser() {
+            const result = document.getElementById('regular-user-result');
+            
+            result.innerHTML = '<p>Logging in as regular user...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8000/hotels/auth/login/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: 'user', password: 'user123' })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Simulate what the Angular app would do
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('isAdmin', data.is_staff.toString());
+                    localStorage.setItem('currentUser', JSON.stringify(data));
+                    
+                    result.innerHTML = `
+                        <div class="warning">
+                            <h3>✅ Regular User Login Successful!</h3>
+                            <p><strong>Username:</strong> ${data.username}</p>
+                            <p><strong>is_staff:</strong> ${data.is_staff}</p>
+                            <p><strong>Note:</strong> This user should NOT be able to access admin interface</p>
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="error">
+                            <h3>❌ Login Failed</h3>
+                            <p><strong>Status:</strong> ${response.status}</p>
+                            <p><strong>Error:</strong> ${data.error || data.detail || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="error">
+                        <h3>❌ Login Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function testAdminAccessAsRegularUser() {
+            const result = document.getElementById('regular-user-result');
+            const isAdmin = localStorage.getItem('isAdmin');
+            
+            if (isAdmin === 'true') {
+                result.innerHTML += `
+                    <div class="error">
+                        <h3>❌ User is admin - this shouldn't happen</h3>
+                        <p>Regular user has admin privileges</p>
+                    </div>
+                `;
+            } else {
+                result.innerHTML += `
+                    <div class="success">
+                        <h3>✅ Regular User Correctly Identified</h3>
+                        <p><strong>isAdmin:</strong> ${isAdmin}</p>
+                        <p><strong>Note:</strong> This user should be redirected to login when trying to access /admin</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-check state on load
+        window.onload = function() {
+            checkCurrentState();
+        };
+    </script>
+</body>
+</html> 

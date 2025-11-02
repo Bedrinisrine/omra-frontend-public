@@ -1,0 +1,53 @@
+<div class="agency-list-container">
+  <div class="header">
+    <h2>Agency Management</h2>
+    <button class="btn btn-primary" (click)="addNewAgency()">
+      <i class="fas fa-plus"></i> Add New Agency
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading agencies...
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && agencies.length === 0" class="no-agencies">
+    No agencies found. <a (click)="addNewAgency()" style="cursor: pointer; color: #007bff;">Add the first agency</a>
+  </div>
+
+  <div *ngIf="!loading && agencies.length > 0" class="agencies-grid">
+    <div *ngFor="let agency of agencies" class="agency-card">
+      <div class="agency-logo">
+        <img *ngIf="agency.logo_agence" 
+             [src]="getImageUrl(agency.logo_agence)" 
+             [alt]="agency.nomagence"
+             class="logo-image">
+        <div *ngIf="!agency.logo_agence" class="no-logo">
+          <i class="fas fa-building"></i>
+        </div>
+      </div>
+      
+      <div class="agency-info">
+        <h3>{{ agency.nomagence }}</h3>
+        <p *ngIf="agency.adr_agence">
+          <i class="fas fa-map-marker-alt"></i> {{ agency.adr_agence }}
+        </p>
+        <p *ngIf="agency.tel">
+          <i class="fas fa-phone"></i> {{ agency.tel }}
+        </p>
+      </div>
+      
+      <div class="agency-actions">
+        <button class="btn btn-sm btn-outline-primary" (click)="editAgency(agency)">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteAgency(agency.id)">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 

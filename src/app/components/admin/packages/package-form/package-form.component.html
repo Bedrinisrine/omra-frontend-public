@@ -1,0 +1,193 @@
+<div class="package-form-container">
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Edit Package' : 'Add New Package' }}</h2>
+  </div>
+
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()" class="package-form">
+    <!-- Basic Package Details -->
+    <div class="form-group">
+      <label for="nom_pak">Package Name</label>
+      <input type="text" id="nom_pak" formControlName="nom_pak" class="form-control">
+      </div>
+
+    <div class="form-group">
+      <label for="prix">Price</label>
+      <input type="text" id="prix" formControlName="prix" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="date_debut">Start Date</label>
+      <input type="date" id="date_debut" formControlName="date_debut" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="date_fin">End Date</label>
+      <input type="date" id="date_fin" formControlName="date_fin" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="ville_depart">Departure City</label>
+      <input type="text" id="ville_depart" formControlName="ville_depart" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="aeroport_depart">Departure Airport</label>
+      <input type="text" id="aeroport_depart" formControlName="aeroport_depart" class="form-control">
+    </div>
+
+     <div class="form-group">
+      <label for="qte_package">Quantity</label>
+      <input type="number" id="qte_package" formControlName="qte_package" class="form-control">
+    </div>
+
+    <!-- Hotel Details -->
+    <div class="form-group">
+      <label for="adr_hotel_medine">Hotel Address (Medine)</label>
+      <input type="text" id="adr_hotel_medine" formControlName="adr_hotel_medine" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="adr_hotel_mekka">Hotel Address (Mekka)</label>
+      <input type="text" id="adr_hotel_mekka" formControlName="adr_hotel_mekka" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_jrs_mekka">Number of Days (Mekka)</label>
+      <input type="number" id="nbr_jrs_mekka" formControlName="nbr_jrs_mekka" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_jrs_medine">Number of Days (Medine)</label>
+      <input type="number" id="nbr_jrs_medine" formControlName="nbr_jrs_medine" class="form-control">
+    </div>
+
+    <!-- Agency Selection (Requires loading agencies) -->
+     <div class="form-group">
+      <label for="agence">Agency</label>
+      <select id="agence" formControlName="agence" class="form-control" (change)="onAgencyChange($event)">
+        <option value="">Select Agency</option>
+        <!-- Options will be loaded from backend -->
+        <option *ngFor="let agency of agencies" [value]="agency.id">{{ agency.nomagence }}</option>
+      </select>
+      
+      <!-- Agency Logo Preview -->
+      <div *ngIf="selectedAgency && selectedAgency.logo_agence" class="agency-logo-preview" style="margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9;">
+        <label style="font-weight: bold; margin-bottom: 5px; display: block;">Selected Agency Logo:</label>
+        <img [src]="getImageUrl(selectedAgency.logo_agence)" 
+             [alt]="selectedAgency.nomagence" 
+             style="width: 60px; height: 60px; object-fit: contain; border-radius: 4px; border: 1px solid #ccc;">
+        <span style="margin-left: 10px; font-weight: 500;">{{ selectedAgency.nomagence }}</span>
+      </div>
+    </div>
+
+    <!-- Hotels Selection (ManyToMany - Requires loading all hotels) -->
+    <div class="form-group">
+      <label for="hotels">Associated Hotels</label>
+       <select id="hotels" formControlName="hotels" class="form-control" multiple>
+        <!-- Options will be loaded from backend -->
+        <option *ngFor="let hotel of allHotels" [value]="hotel.id">{{ hotel.nom_hotels }}</option>
+      </select>
+      <small class="form-text text-muted">Hold Ctrl or Cmd to select multiple hotels</small>
+    </div>
+
+    <!-- Checkbox Options -->
+    <div class="form-group">
+      <div class="form-check">
+        <input type="checkbox" id="vol_retour" formControlName="vol_retour" class="form-check-input">
+        <label class="form-check-label" for="vol_retour">Round Trip Flight</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="transfert_aeroport_hotel" formControlName="transfert_aeroport_hotel" class="form-check-input">
+        <label class="form-check-label" for="transfert_aeroport_hotel">Airport-Hotel Transfer</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="guide" formControlName="guide" class="form-check-input">
+        <label class="form-check-label" for="guide">Guide</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="procedure_visa" formControlName="procedure_visa" class="form-check-input">
+        <label class="form-check-label" for="procedure_visa">Visa Procedure</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="petit_dejeuner" formControlName="petit_dejeuner" class="form-check-input">
+        <label class="form-check-label" for="petit_dejeuner">Breakfast Included</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="assistance_tel" formControlName="assistance_tel" class="form-check-input">
+        <label class="form-check-label" for="assistance_tel">Telephone Assistance</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="assurance" formControlName="assurance" class="form-check-input">
+        <label class="form-check-label" for="assurance">Insurance</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="visite_jabal_ouhoud" formControlName="visite_jabal_ouhoud" class="form-check-input">
+        <label class="form-check-label" for="visite_jabal_ouhoud">Visit Jabal Ohoud</label>
+      </div>
+        <div class="form-check">
+        <input type="checkbox" id="visite_masjid_quba" formControlName="visite_masjid_quba" class="form-check-input">
+        <label class="form-check-label" for="visite_masjid_quba">Visit Masjid Quba</label>
+      </div>
+       <div class="form-check">
+        <input type="checkbox" id="visite_souk_tamr" formControlName="visite_souk_tamr" class="form-check-input">
+        <label class="form-check-label" for="visite_souk_tamr">Visit Souk Tamr</label>
+      </div>
+        <div class="form-check">
+        <input type="checkbox" id="rite_orma" formControlName="rite_orma" class="form-check-input">
+        <label class="form-check-label" for="rite_orma">Rite Omra</label>
+      </div>
+         <div class="form-check">
+        <input type="checkbox" id="visite_mekka" formControlName="visite_mekka" class="form-check-input">
+        <label class="form-check-label" for="visite_mekka">Visit Mekka</label>
+      </div>
+        <div class="form-check">
+        <input type="checkbox" id="visite_jabal_nour" formControlName="visite_jabal_nour" class="form-check-input">
+        <label class="form-check-label" for="visite_jabal_nour">Visit Jabal Nour</label>
+      </div>
+        <div class="form-check">
+        <input type="checkbox" id="omra_secondaire" formControlName="omra_secondaire" class="form-check-input">
+        <label class="form-check-label" for="omra_secondaire">Secondary Omra</label>
+      </div>
+    </div>
+
+    <!-- Images Input -->
+    <div class="form-group">
+      <label for="images">Images:</label>
+      <input type="file" id="images" multiple (change)="onFileSelected($event)" class="form-control-file" accept="image/*">
+      <div *ngIf="selectedFiles.length > 0" class="mt-2">
+        <p>Selected files:</p>
+        <ul>
+          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Existing Images Display -->
+    <div *ngIf="isEdit && existingImages.length > 0" class="form-group">
+      <label>Existing Images:</label>
+      <div class="existing-images">
+        <div *ngFor="let image of existingImages">
+          <img [src]="getImageUrl(image.image)" alt="Existing Package Image" style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;">
+          <!-- Add a button here to remove existing images if needed -->
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="packageForm.invalid || loading">
+        {{ loading ? 'Saving...' : (isEdit ? 'Update Package' : 'Add Package') }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="router.navigate(['/admin/packages'])" [disabled]="loading">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div> 

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="main-navbar">
+      <div class="navbar-logo">
+        <img src="assets/images/omralogo.jpg" alt="MYOMRA Logo" />
+        <span>MYOMRA</span>
+      </div>
+      <ul class="navbar-menu">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a routerLink="/user/packages" routerLinkActive="active">Nos forfaits</a></li>
+        <li><a routerLink="/user/hotels" routerLinkActive="active">Hôtels</a></li>
+        <li><a href="#">Découvrir</a></li>
+        <li><a href="#">Concevez votre Omra</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-section">
+      <h1 class="hero-title">Hotels</h1>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar-container">
+      <div class="filter-bar-modern">
+        <div class="filter-tabs-modern">
+          <button class="tab-button-modern" [class.active]="selectedTab === 'package'" (click)="setTab('package')">
+            <i class="fas fa-box"></i> Forfait
+          </button>
+          <button class="tab-button-modern" [class.active]="selectedTab === 'hotel'" (click)="setTab('hotel')">
+            <i class="fas fa-hotel"></i> Hôtels
+          </button>
+          <button class="tab-button-modern" [class.active]="selectedTab === 'flight'" (click)="setTab('flight')">
+            <i class="fas fa-plane"></i> Vols
+          </button>
+        </div>
+        <div class="filter-inputs-modern">
+          <!-- Vols Tab -->
+          <ng-container *ngIf="selectedTab === 'flight'">
+            <div class="input-group-modern">
+              <label for="flightFrom">Départ</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="flightFrom" [(ngModel)]="flightFrom">
+                  <option value="" disabled selected>Ville de départ</option>
+                  <option value="Paris, France">Paris, France</option>
+                  <option value="Marseille, France">Marseille, France</option>
+                  <option value="Lyon, France">Lyon, France</option>
+                  <option value="Bruxelles, Belgique">Bruxelles, Belgique</option>
+                  <option value="Genève, Suisse">Genève, Suisse</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="flightTo">À</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="flightTo" [(ngModel)]="flightTo">
+                  <option value="" disabled selected>Ville d'arrivée</option>
+                  <option value="Makkah">Makkah</option>
+                  <option value="Madinah">Madinah</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="flightDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="flightDate" [(ngModel)]="flightDate">
+              </div>
+            </div>
+          </ng-container>
+          <!-- Hôtels Tab -->
+          <ng-container *ngIf="selectedTab === 'hotel'">
+            <div class="input-group-modern">
+              <label for="hotelCity">Ville</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="hotelCity" [(ngModel)]="hotelCity" style="flex: 1; border: none; background: transparent; font-size: 1rem; outline: none; padding: 0; color: #222;">
+                <option value="Makkah">La Mecque</option>
+                <option value="Madinah">Médine</option>
+              </select>
+               </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="hotelDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+              <input type="date" id="hotelDate" [(ngModel)]="hotelDate">
+              </div>
+            </div>
+          </ng-container>
+          <!-- Forfait Tab -->
+          <ng-container *ngIf="selectedTab === 'package'">
+            <div class="input-group-modern">
+              <label for="packageDeparture">Départ</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="packageDeparture" [(ngModel)]="packageDeparture" style="flex: 1; border: none; background: transparent; font-size: 1rem; outline: none; padding: 0; color: #222;">
+                  <option value="Paris, France">Paris, France</option>
+                  <option value="Marseille, France">Marseille, France</option>
+                  <option value="Lyon, France">Lyon, France</option>
+                  <option value="Bruxelles, Belgique">Bruxelles, Belgique</option>
+                  <option value="Genève, Suisse">Genève, Suisse</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="packageDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+              <input type="date" id="packageDate" [(ngModel)]="packageDate">
+              </div>
+            </div>
+          </ng-container>
+          <button class="btn-search-modern" (click)="performSearch()"><i class="fas fa-search"></i> Rechercher</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content-area" *ngIf="selectedTab === 'hotel' || selectedTab === 'package'">
+      <div class="filter-sidebar">
+        <!-- Search by hotel name -->
+        <div class="filter-section">
+          <h4>Search by hotel name</h4>
+          <div class="search-input-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="eg. The Fullerton Hotel" [(ngModel)]="hotelNameFilter">
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-section">
+          <h4>Price Range</h4>
+          <div class="filter-options">
+            <label class="checkbox-container">
+              $ 0 - $ 200
+              <input type="checkbox" value="0-200" [checked]="isPriceRangeSelected('0-200')" (change)="togglePriceRange('0-200')">
+              <span class="checkmark"></span>
+              <span class="item-count">200</span>
+            </label>
+            <label class="checkbox-container">
+              $ 200 - $ 500
+              <input type="checkbox" value="200-500" [checked]="isPriceRangeSelected('200-500')" (change)="togglePriceRange('200-500')">
+              <span class="checkmark"></span>
+              <span class="item-count">100</span>
+            </label>
+            <label class="checkbox-container">
+              $ 500 - $ 1,000
+              <input type="checkbox" value="500-1000" [checked]="isPriceRangeSelected('500-1000')" (change)="togglePriceRange('500-1000')">
+              <span class="checkmark"></span>
+              <span class="item-count">15</span>
+            </label>
+            <label class="checkbox-container">
+              $ 1,000 - $ 2,000
+              <input type="checkbox" value="1000-2000" [checked]="isPriceRangeSelected('1000-2000')" (change)="togglePriceRange('1000-2000')">
+              <span class="checkmark"></span>
+              <span class="item-count">12</span>
+            </label>
+            <!-- Add more price ranges as needed -->
+          </div>
+        </div>
+
+        <!-- Star Rating Filter -->
+        <div class="filter-section">
+          <h4>Star Rating</h4>
+          <div class="filter-options">
+             <label class="checkbox-container">
+              <div class="star-rating-option">
+                <i *ngFor="let star of [].constructor(5)" class="fas fa-star"></i>
+                <span>5</span>
+              </div>
+              <input type="checkbox" value="5" [checked]="isStarRatingSelected('5')" (change)="toggleStarRating('5')">
+              <span class="checkmark"></span>
+              <span class="item-count">83</span>
+            </label>
+            <label class="checkbox-container">
+               <div class="star-rating-option">
+                <i *ngFor="let star of [].constructor(4)" class="fas fa-star"></i>
+                 <i *ngFor="let star of [].constructor(1)" class="far fa-star empty"></i>
+                <span>4</span>
+              </div>
+              <input type="checkbox" value="4" [checked]="isStarRatingSelected('4')" (change)="toggleStarRating('4')">
+              <span class="checkmark"></span>
+              <span class="item-count">24</span>
+            </label>
+            <label class="checkbox-container">
+               <div class="star-rating-option">
+                <i *ngFor="let star of [].constructor(3)" class="fas fa-star"></i>
+                 <i *ngFor="let star of [].constructor(2)" class="far fa-star empty"></i>
+                <span>3</span>
+              </div>
+              <input type="checkbox" value="3" [checked]="isStarRatingSelected('3')" (change)="toggleStarRating('3')">
+              <span class="checkmark"></span>
+              <span class="item-count">26</span>
+            </label>
+            <label class="checkbox-container">
+               <div class="star-rating-option">
+                <i *ngFor="let star of [].constructor(2)" class="fas fa-star"></i>
+                 <i *ngFor="let star of [].constructor(3)" class="far fa-star empty"></i>
+                <span>2</span>
+              </div>
+              <input type="checkbox" value="2" [checked]="isStarRatingSelected('2')" (change)="toggleStarRating('2')">
+              <span class="checkmark"></span>
+              <span class="item-count">34</span>
+            </label>
+            <!-- Add more star ratings as needed -->
+          </div>
+        </div>
+
+      </div>
+      <div class="hotel-list-area">
+  <h2 class="results-heading" *ngIf="hotelNameFilter || priceRangeFilters.length > 0 || starRatingFilters.length > 0">{{ hotelCity }}: {{ filteredHotels.length }} results found</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading hotels...
+  </div>
+
+        <div class="hotel-list" *ngIf="!loading && filteredHotels.length > 0">
+          <div *ngFor="let hotel of filteredHotels" class="hotel-item">
+            <div class="hotel-image-container">
+      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : 'assets/images/no-image.png'" 
+           [alt]="hotel.nom_hotels" 
+                     class="hotel-item-image">
+                     <!-- Image navigation (optional, similar to modal) can be added here if needed -->
+            </div>
+            <div class="hotel-details">
+              <div class="hotel-header">
+        <div class="hotel-title-stars">
+        <h3>{{ hotel.nom_hotels }}</h3>
+                  <div class="hotel-stars">
+                    <i *ngFor="let star of [].constructor(hotel.nbr_etoile)" class="fas fa-star"></i>
+                  </div>
+        </div>
+              </div>
+              <div class="hotel-meta">
+                <p class="location"><i class="fas fa-map-marker-alt"></i> {{ hotel.ville_arr }} ({{ hotel.nbr_nuit }} nights) Besphorus Hotel Safi Endowment <a href="#" class="show-on-map">Show on map</a></p>
+                <p class="room-type">Double room with private bathroom</p>
+                <p class="offer">Limited time offer</p>
+                <p *ngIf="selectedTab === 'package' && hotel.package_name" class="package-info">Package: {{ hotel.package_name }}</p>
+              </div>
+              <div class="hotel-pricing">
+                <div class="pricing-item">
+                  <img src="assets/images/agodalogo.png" alt="Agoda Logo">
+                  
+                  <span class="price">{{ hotel.prix_agoda }}</span>
+                </div>
+                 <div class="pricing-item">
+                  <img src="assets/images/expedia.png" alt="Expedia Logo">
+                  
+                  <span class="price">{{ hotel.prix_expedia }}</span>
+                </div>
+                 <div class="pricing-item">
+                  <img src="assets/images/bookinglogo.png" alt="Booking.com Logo">
+                  
+                  <span class="price">{{ hotel.prix_booking }}</span>
+                </div>
+              </div>
+              <div class="hotel-actions">
+                <button class="btn-reservation">Réservation</button>
+                <button class="btn-read-more" (click)="showHotelDetails(hotel)">Lire plus <i class="fas fa-chevron-right"></i></button>
+              </div>
+      </div>
+    </div>
+  </div>
+
+        <div *ngIf="!loading && filteredHotels.length === 0" class="no-hotels">
+    No hotels available at the moment.
+  </div>
+
+  <div *ngIf="selectedHotel" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeHotelDetails()">&times;</span>
+      <ng-container *ngIf="selectedHotel">
+        
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+          <img [src]="selectedHotel.images && selectedHotel.images.length > 0 ? getImageUrl(selectedHotel.images[currentImageIndex].image) : 'assets/images/no-image.png'" 
+               [alt]="selectedHotel.nom_hotels" 
+               class="modal-image">
+          
+          <!-- Navigation Buttons -->
+          <button class="prev-button" (click)="prevImage()" [disabled]="currentImageIndex === 0">&#10094;</button>
+          <button class="next-button" (click)="nextImage()" [disabled]="currentImageIndex === (selectedHotel.images.length - 1)">&#10095;</button>
+        </div>
+
+        <div class="modal-info">
+          <h2>{{ selectedHotel.nom_hotels }}</h2>
+          <p class="location">{{ selectedHotel.ville_arr }}</p>
+          <p class="address">{{ selectedHotel.adresse }}</p>
+          <p class="price">${{ selectedHotel.prix }} per night</p>
+          <p class="stars">★ {{ selectedHotel.nbr_etoile }} Stars</p>
+          <p class="details">
+            <span>Rooms: {{ selectedHotel.nbrchambre }}</span>
+            <span>Capacity: {{ selectedHotel.nbpers }} people</span>
+            <span>Nights: {{ selectedHotel.nbr_nuit }}</span>
+          </p>
+          <p class="dates">
+            Available from {{ selectedHotel.date_debut | date }} to {{ selectedHotel.date_fin | date }}
+          </p>
+          <p class="distance">
+            Distance to Haram: {{ selectedHotel.distance_haram }} km
+          </p>
+          <p class="collaborator">
+            Partner: {{ selectedHotel.collaborator }}
+          </p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div> 
+    </div>
+
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <div class="footer-logo">
+        <img src="assets/images/omralogo.jpg" alt="MYOMRA Logo" />
+        <span>MYOMRA</span>
+      </div>
+      <p>Votre partenaire de confiance pour une Omra sans faille</p>
+      <p>Nous nous engageons à rendre votre voyage spirituel aussi fluide et significatif que possible. Forts de plusieurs années d'expérience et d'une compréhension approfondie des besoins des pèlerins.</p>
+       <button class="language-switcher">
+          <i class="fas fa-globe"></i> Français
+        </button>
+    </div>
+
+    <div class="footer-section links">
+      <h4>Liens rapides</h4>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Nos forfaits</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section pages">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="#">Découvrir</a></li>
+        <li><a href="#">Concevez votre Omra</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section payment">
+      <h4>Moyens de paiement</h4>
+      <div class="payment-icons">
+        <img src="assets/images/visalogo.png" alt="Visa">
+        <img src="assets/images/mastercardlogo.png" alt="Mastercard">
+        <img src="assets/images/paypallogo.png" alt="PayPal">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2024 MY Omra. Tous droits réservés.</p>
+    <div class="footer-social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html> 

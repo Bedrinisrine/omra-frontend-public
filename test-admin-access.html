@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Access Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .success { background: #d4edda; }
+        .error { background: #f8d7da; }
+        button { padding: 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Admin Access Test</h1>
+    
+    <div class="test">
+        <h3>Test 1: Clear all auth data and try to access admin</h3>
+        <button onclick="clearAuth()">Clear Auth Data</button>
+        <button onclick="testAdmin()">Try Access Admin</button>
+        <div id="result1"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Set fake auth data and try to access admin</h3>
+        <button onclick="setFakeAuth()">Set Fake Auth</button>
+        <button onclick="testAdmin()">Try Access Admin</button>
+        <div id="result2"></div>
+    </div>
+
+    <script>
+        function clearAuth() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("isAdmin");
+            document.getElementById("result1").innerHTML = "<div class='success'>Auth data cleared</div>";
+        }
+        
+        function setFakeAuth() {
+            localStorage.setItem("token", "fake-token");
+            localStorage.setItem("currentUser", JSON.stringify({username: "test", is_staff: true}));
+            localStorage.setItem("isAdmin", "true");
+            document.getElementById("result2").innerHTML = "<div class='success'>Fake auth data set</div>";
+        }
+        
+        function testAdmin() {
+            const token = localStorage.getItem("token");
+            const user = localStorage.getItem("currentUser");
+            const isAdmin = localStorage.getItem("isAdmin");
+            
+            if (!token || !user || isAdmin !== "true") {
+                alert("Access denied! Redirecting to login...");
+                window.location.href = "/login";
+            } else {
+                alert("Auth data found, but this should still redirect to login in the real app");
+                window.location.href = "/admin";
+            }
+        }
+    </script>
+</body>
+</html>

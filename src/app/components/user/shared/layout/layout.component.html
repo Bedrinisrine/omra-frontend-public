@@ -1,0 +1,69 @@
+<!-- Navigation Bar -->
+<nav class="main-navbar">
+  <div class="navbar-logo">
+    <img src="assets/images/omralogo.jpg" alt="MYOMRA Logo" />
+    <span>MYOMRA</span>
+  </div>
+  <ul class="navbar-menu">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">À propos</a></li>
+    <li><a routerLink="/user/packages" routerLinkActive="active">Nos forfaits</a></li>
+    <li><a routerLink="/user/hotels" routerLinkActive="active">Hôtels</a></li>
+    <li><a routerLink="/discover" routerLinkActive="active">Découvrir</a></li>
+    <li><a routerLink="/design" routerLinkActive="active">Concevez votre Omra</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer Section -->
+<footer style="background: #181828; color: #fff; padding: 0 0 0 0; position: relative; margin-top: 60px; font-family: inherit;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: flex-start; min-height: 260px;">
+    <div style="flex: 1; min-width: 220px; max-width: 320px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 36px;">
+      <img src="assets/images/omralogo.jpg" alt="Omra Logo" style="height: 48px; margin-bottom: 8px;" />
+      <div style="font-size: 1.15rem; font-weight: bold; color: #e2c76c; margin-bottom: 6px;">Votre partenaire de confiance pour une Omra sans faille</div>
+      <div style="font-size: 1rem; color: #eee; margin-bottom: 0;">Nous nous engageons à rendre votre voyage spirituel aussi fluide et significatif que possible. Forts de plusieurs années d'expérience et d'une compréhension approfondie des besoins des pèlerins.</div>
+    </div>
+    <div style="flex: 1; min-width: 160px; max-width: 180px; margin-top: 36px;">
+      <div style="font-weight: bold; color: #fff; margin-bottom: 12px;">Liens rapides</div>
+      <ul style="list-style: none; padding: 0; margin: 0; color: #eee; font-size: 1rem;">
+        <li style="margin-bottom: 6px;"><a routerLink="/" style="color: #eee; text-decoration: none;">Accueil</a></li>
+        <li style="margin-bottom: 6px;"><a routerLink="/about" style="color: #eee; text-decoration: none;">À propos</a></li>
+        <li style="margin-bottom: 6px;"><a routerLink="/user/packages" style="color: #eee; text-decoration: none;">Nos forfaits</a></li>
+      </ul>
+    </div>
+    <div style="flex: 1; min-width: 160px; max-width: 180px; margin-top: 36px;">
+      <div style="font-weight: bold; color: #fff; margin-bottom: 12px;">Pages</div>
+      <ul style="list-style: none; padding: 0; margin: 0; color: #eee; font-size: 1rem;">
+        <li style="margin-bottom: 6px;"><a routerLink="/discover" style="color: #eee; text-decoration: none;">Découvrir</a></li>
+        <li style="margin-bottom: 6px;"><a routerLink="/design" style="color: #eee; text-decoration: none;">Concevez votre Omra</a></li>
+        <li style="margin-bottom: 6px;"><a routerLink="/contact" style="color: #eee; text-decoration: none;">Contact</a></li>
+      </ul>
+    </div>
+    <div style="flex: 1.2; min-width: 220px; max-width: 320px; margin-top: 36px;">
+      <div style="font-weight: bold; color: #fff; margin-bottom: 8px;">Moyens de paiement</div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <img src="assets/images/visalogo.png" alt="Visa" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+        <img src="assets/images/mastercardlogo.png" alt="MasterCard" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+        <img src="assets/images/paypallogo.png" alt="PayPal" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+      </div>
+    </div>
+  </div>
+  <div style="border-top: 1px solid #333; margin-top: 36px; padding: 12px 0 8px 0; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin-left: auto; margin-right: auto; color: #bbb; font-size: 0.98rem;">
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <button style="background: #222; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 4px 16px; font-size: 1rem; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+        <i class="fas fa-globe"></i> Français
+      </button>
+    </div>
+    <span>© 2024 MY Omra. Tous droits réservés.</span>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</footer>

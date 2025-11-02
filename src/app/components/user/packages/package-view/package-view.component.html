@@ -1,0 +1,80 @@
+<div class="package-view-container">
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading package details...
+  </div>
+
+  <div *ngIf="packageData" class="package-details">
+    <h2>{{ packageData.nom_pak }}</h2>
+
+    <!-- Image Gallery -->
+    <div class="image-gallery">
+      <img *ngIf="packageData.images && packageData.images.length > 0" 
+           [src]="getImageUrl(packageData.images[currentImageIndex].image)" 
+           [alt]="packageData.nom_pak" 
+           class="main-image">
+      <div *ngIf="!packageData.images || packageData.images.length === 0" class="no-image-placeholder">
+        No image available
+      </div>
+
+      <div *ngIf="packageData.images && packageData.images.length > 1" class="gallery-navigation">
+        <button (click)="prevImage()" [disabled]="currentImageIndex === 0">Previous</button>
+        <span>{{ currentImageIndex + 1 }} / {{ packageData.images.length }}</span>
+        <button (click)="nextImage()" [disabled]="currentImageIndex === (packageData.images.length - 1)">Next</button>
+      </div>
+    </div>
+
+    <!-- Basic Details -->
+    <p><strong>Price:</strong> {{ packageData.prix }}</p>
+    <p><strong>Dates:</strong> {{ packageData.date_debut }} to {{ packageData.date_fin }}</p>
+    <p><strong>Departure City:</strong> {{ packageData.ville_depart }}</p>
+     <p><strong>Departure Airport:</strong> {{ packageData.aeroport_depart }}</p>
+    <p><strong>Quantity:</strong> {{ packageData.qte_package }}</p>
+
+    <!-- Hotel Details -->
+    <p><strong>Hotel Address (Medine):</strong> {{ packageData.adr_hotel_medine }}</p>
+    <p><strong>Hotel Address (Mekka):</strong> {{ packageData.adr_hotel_mekka }}</p>
+    <p><strong>Days in Mekka:</strong> {{ packageData.nbr_jrs_mekka }}</p>
+    <p><strong>Days in Medine:</strong> {{ packageData.nbr_jrs_medine }}</p>
+
+    <!-- Agency (If loaded) -->
+    <p *ngIf="packageData.agence"><strong>Agency:</strong> {{ packageData.agence.nom }}</p>
+
+    <!-- Associated Hotels (If loaded and you want to display them) -->
+    <div *ngIf="packageData.hotels && packageData.hotels.length > 0">
+      <p><strong>Associated Hotels:</strong></p>
+      <ul>
+        <li *ngFor="let hotel of packageData.hotels">{{ hotel.nom_hotels }}</li>
+      </ul>
+    </div>
+
+    <!-- Checkbox Options -->
+    <div class="options">
+      <p><strong>Included Options:</strong></p>
+      <ul>
+        <li *ngIf="packageData.vol_retour">Round Trip Flight</li>
+        <li *ngIf="packageData.transfert_aeroport_hotel">Airport-Hotel Transfer</li>
+         <li *ngIf="packageData.guide">Guide</li>
+          <li *ngIf="packageData.procedure_visa">Visa Procedure</li>
+           <li *ngIf="packageData.petit_dejeuner">Breakfast Included</li>
+            <li *ngIf="packageData.assistance_tel">Telephone Assistance</li>
+             <li *ngIf="packageData.assurance">Insurance</li>
+              <li *ngIf="packageData.visite_jabal_ouhoud">Visit Jabal Ohoud</li>
+               <li *ngIf="packageData.visite_masjid_quba">Visit Masjid Quba</li>
+                <li *ngIf="packageData.visite_souk_tamr">Visit Souk Tamr</li>
+                 <li *ngIf="packageData.rite_orma">Rite Omra</li>
+                  <li *ngIf="packageData.visite_mekka">Visit Mekka</li>
+                   <li *ngIf="packageData.visite_jabal_nour">Visit Jabal Nour</li>
+                    <li *ngIf="packageData.omra_secondaire">Secondary Omra</li>
+        <!-- Add other boolean fields here -->
+      </ul>
+    </div>
+
+    <!-- Add other package details as needed -->
+
+    <button class="btn btn-secondary" (click)="router.navigate(['/user/packages'])">Back to Packages</button>
+  </div>
+</div> 

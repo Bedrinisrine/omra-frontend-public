@@ -1,0 +1,25 @@
+<div class="package-admin-dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Package Management Dashboard</h1>
+      <div class="user-info">
+        <span>Welcome, {{ currentUser?.username }}</span>
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="dashboard-cards">
+      <div class="card package-card" (click)="navigateToPackages()">
+        <div class="card-icon">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="card-content">
+          <h3>Manage Packages</h3>
+          <p>Add, edit, and manage travel packages</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

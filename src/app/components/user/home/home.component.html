@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Omra Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="background-patterns">
+    <img src="assets/images/image1.png" class="pattern pattern-top-left" alt="Pattern" />
+    <img src="assets/images/image1.png" class="pattern pattern-top-right" alt="Pattern" />
+    <img src="assets/images/image1.png" class="pattern pattern-mid-left" alt="Pattern" />
+    <img src="assets/images/image1.png" class="pattern pattern-mid-right" alt="Pattern" />
+    <img src="assets/images/image1.png" class="pattern pattern-bottom-left" alt="Pattern" />
+    <img src="assets/images/image1.png" class="pattern pattern-bottom-right" alt="Pattern" />
+  </div>
+
+    <!-- Navigation Bar -->
+    <nav class="main-navbar">
+      <div class="navbar-logo">
+        <img src="assets/images/omralogo.jpg" alt="MYOMRA Logo" />
+        <span>MYOMRA</span>
+      </div>
+      <ul class="navbar-menu">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a routerLink="/user/packages" routerLinkActive="active">Nos forfaits</a></li>
+        <li><a routerLink="/user/hotels" routerLinkActive="active">Hôtels</a></li>
+        <li><a href="#">Découvrir</a></li>
+        <li><a href="#">Concevez votre Omra</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="position: relative;">
+      <!-- Decorative pattern image in the hero section -->
+      <img class="pattern-svg" src="assets/images/image1.png" alt="Geometric Pattern" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Réservez votre Omra en toute simplicité et dévotion</h1>
+        <p>Simplifiez votre voyage spirituel avec des forfaits personnalisés et des options de réservation fluides.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" routerLink="/user/packages">Voir les forfaits</a>
+          <a class="btn btn-secondary">Concevez votre Omra</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Filter Bar -->
+    <div class="filter-bar-container">
+      <div class="filter-bar-modern">
+        <div class="filter-tabs-modern">
+          <button class="tab-button-modern" [class.active]="selectedTab === 'package'" (click)="setTab('package')">
+            <i class="fas fa-box"></i> Forfait
+          </button>
+          <button class="tab-button-modern" [class.active]="selectedTab === 'hotel'" (click)="setTab('hotel')">
+            <i class="fas fa-hotel"></i> Hôtels
+          </button>
+          <button class="tab-button-modern" [class.active]="selectedTab === 'flight'" (click)="setTab('flight')">
+            <i class="fas fa-plane"></i> Vols
+          </button>
+        </div>
+        <div class="filter-inputs-modern">
+          <!-- Vols Tab -->
+          <ng-container *ngIf="selectedTab === 'flight'">
+            <div class="input-group-modern">
+              <label for="flightFrom">Départ</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="flightFrom" [(ngModel)]="flightFrom">
+                  <option value="" disabled selected>Ville de départ</option>
+                  <option value="Paris, France">Paris, France</option>
+                  <option value="Marseille, France">Marseille, France</option>
+                  <option value="Lyon, France">Lyon, France</option>
+                  <option value="Bruxelles, Belgique">Bruxelles, Belgique</option>
+                  <option value="Genève, Suisse">Genève, Suisse</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="flightTo">À</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="flightTo" [(ngModel)]="flightTo">
+                  <option value="" disabled selected>Ville d'arrivée</option>
+                  <option value="Makkah">Makkah</option>
+                  <option value="Madinah">Madinah</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="flightDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="flightDate" [(ngModel)]="flightDate">
+              </div>
+            </div>
+          </ng-container>
+          <!-- Hôtels Tab -->
+          <ng-container *ngIf="selectedTab === 'hotel'">
+            <div class="input-group-modern">
+              <label for="hotelCity">Ville</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="hotelCity" [(ngModel)]="hotelCity" style="flex: 1; border: none; background: transparent; font-size: 1rem; outline: none; padding: 0; color: #222;">
+                <option value="Makkah">La Mecque</option>
+                <option value="Madinah">Médine</option>
+              </select>
+               </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="hotelDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+              <input type="date" id="hotelDate" [(ngModel)]="hotelDate">
+              </div>
+            </div>
+          </ng-container>
+          <!-- Forfait Tab -->
+          <ng-container *ngIf="selectedTab === 'package'">
+            <div class="input-group-modern">
+              <label for="packageDeparture">Départ</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="packageDeparture" [(ngModel)]="packageDeparture" style="flex: 1; border: none; background: transparent; font-size: 1rem; outline: none; padding: 0; color: #222;">
+                  <option value="Paris, France">Paris, France</option>
+                  <option value="Marseille, France">Marseille, France</option>
+                  <option value="Lyon, France">Lyon, France</option>
+                  <option value="Bruxelles, Belgique">Bruxelles, Belgique</option>
+                  <option value="Genève, Suisse">Genève, Suisse</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group-modern">
+              <label for="packageDate">Date</label>
+              <div class="input-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+              <input type="date" id="packageDate" [(ngModel)]="packageDate">
+              </div>
+            </div>
+          </ng-container>
+          <button class="btn-search-modern" (click)="performSearch()"><i class="fas fa-search"></i> Rechercher</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Container for About and Services -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+      <!-- Qui sommes-nous Section -->
+      <div class="qui-sommes-nous-section" style="display: flex; align-items: center; justify-content: center; margin: 40px 0; gap: 40px;">
+        <div class="qui-sommes-nous-image" style="flex: none; width: 340px; height: 340px; min-width: 240px; max-width: 400px; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;">
+          <img src="assets/images/kaaba.jpg" alt="Omra" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;" />
+        </div>
+        <div class="qui-sommes-nous-content" style="flex: 1; max-width: 900px; padding: 24px 18px; border-radius: 24px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width: 320px;">
+          <h2 style="font-size: 2.1rem; font-weight: bold; margin-bottom: 8px; color: #222;">Qui sommes-nous</h2>
+          <h3 style="font-size: 1.15rem; color: #888; margin-bottom: 18px; font-weight: 400;">Votre partenaire de confiance pour une expérience Omra sans faille</h3>
+          <p style="font-size: 1.01rem; margin-bottom: 12px; color: #222; line-height: 1.5;">Nous nous engageons à rendre votre voyage spirituel aussi fluide et significatif que possible. Forts de plusieurs années d'expérience et d'une compréhension approfondie des besoins des pèlerins, notre mission est de fournir des services fiables et personnalisés pour garantir une Omra sans stress.</p>
+          <p style="font-size: 1.01rem; margin-bottom: 18px; color: #222; line-height: 1.5;">Des forfaits soigneusement sélectionnés aux itinéraires sur mesure, nous avons à cœur d'être votre compagnon à chaque étape. Que vous entrepreniez votre première Omra ou que vous soyez un pèlerin expérimenté, notre équipe est là pour vous guider et vous accompagner dans ce voyage sacré.</p>
+          <div style="margin-top: 24px;">
+            <span style="font-weight: bold; color: #bfa046; font-size: 1.08rem;">Les meilleures entreprises</span>
+            <div style="display: flex; align-items: center; gap: 24px; margin-top: 10px;">
+              <img src="assets/images/gitlablogo.png" alt="GitLab" style="height: 32px;" />
+              <img src="assets/images/cartalogo.png" alt="Carta" style="height: 32px;" />
+              <img src="assets/images/canvalogo.png" alt="Canva" style="height: 32px;" />
+              <img src="assets/images/slacklogo.png" alt="Slack" style="height: 32px;" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Qui sommes-nous Section -->
+
+      <!-- Nos Services Section -->
+      <div class="nos-services-section" style="margin: 60px 0;">
+        <h2 style="text-align: center; font-size: 2.5rem; font-weight: bold; margin-bottom: 8px;">Nos Services</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #444; margin-bottom: 36px;">Découvrez nos services pour votre Omra</p>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 0;">
+          <button (click)="scrollServices('left')" style="border: none; background: #fff; font-size: 2rem; cursor: pointer; color: #bfa046; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 40px; height: 40px; margin-right: 8px;">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div #servicesRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; width: 900px;">
+            <div *ngFor="let service of services; let i = index"
+                 class="service-card"
+                 (click)="setActiveService(i)"
+                 (mouseenter)="hoveredServiceIndex = i"
+                 (mouseleave)="hoveredServiceIndex = null"
+                 [ngStyle]="{
+                   background: (activeServiceIndex === i || hoveredServiceIndex === i) ? '#bfa046' : '#fff',
+                   color: (activeServiceIndex === i || hoveredServiceIndex === i) ? '#fff' : '#222',
+                   border: (activeServiceIndex === i || hoveredServiceIndex === i) ? '2px solid #bfa046' : '2px solid #eee',
+                   boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+                   borderRadius: '24px',
+                   padding: '22px 18px',
+                   width: '240px',
+                   textAlign: 'center',
+                   marginRight: '18px',
+                   transition: 'background 0.3s, color 0.3s',
+                   height: '240px',
+                   boxSizing: 'border-box',
+                   cursor: 'pointer',
+                   display: 'inline-flex',
+                   flexDirection: 'column',
+                   alignItems: 'center',
+                   justifyContent: 'center',
+                   verticalAlign: 'top'
+                 }">
+              <div [ngStyle]="{
+                    fontSize: '2.1rem',
+                    color: (activeServiceIndex === i || hoveredServiceIndex === i) ? '#fff' : '#bfa046',
+                    marginBottom: '12px'
+                  }">
+                <i class="fas fa-{{service.icon}}"></i>
+              </div>
+              <h3 style="font-size: 1.08rem; font-weight: bold; margin-bottom: 8px; word-break: break-word; white-space: normal; line-height: 1.25;">{{service.title}}</h3>
+              <p [ngStyle]="{color: (activeServiceIndex === i || hoveredServiceIndex === i) ? '#fff' : '#666', fontSize: '0.97rem', wordBreak: 'break-word', whiteSpace: 'normal', lineHeight: '1.3', margin: 0}">{{service.desc}}</p>
+            </div>
+          </div>
+          <button (click)="scrollServices('right')" style="border: none; background: #fff; font-size: 2rem; cursor: pointer; color: #bfa046; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 40px; height: 40px; margin-left: 8px;">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <!-- End Nos Services Section -->
+
+      <!-- Section Populaires Forfaits Omra -->
+      <div class="popular-packages-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Nos forfaits Omra populaires</h2>
+              <p style="font-size: 1.1rem; color: #444; margin-top: 8px;">Découvrez nos forfaits soigneusement sélectionnés pour répondre à vos besoins</p>
+            </div>
+            <button (click)="goToPackages()" style="background: none; border: none; color: #222; font-weight: 500; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+              Voir tous les forfaits <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div style="margin: 32px 0 24px 0; display: flex; gap: 16px; flex-wrap: wrap;">
+            <span *ngFor="let tag of packageTags"
+                  (click)="setTag(tag)"
+                  [ngStyle]="{
+                    background: selectedTag === tag ? '#e2c76c' : '#fff',
+                    color: selectedTag === tag ? '#fff' : '#bfa046',
+                    border: selectedTag === tag ? '2px solid #e2c76c' : '2px solid #bfa046',
+                    borderRadius: '24px',
+                    padding: '7px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    cursor: 'pointer',
+                    transition: 'background 0.2s, color 0.2s, border 0.2s'
+                  }">
+              {{tag}}
+            </span>
+            <span *ngIf="selectedTag" (click)="clearTag()" style="background: #fff; color: #bfa046; border: 2px solid #bfa046; border-radius: 24px; padding: 7px 24px; font-size: 1rem; font-weight: 500; cursor: pointer; margin-left: 8px;">Tout</span>
+          </div>
+          <div style="position: relative;">
+            <button (click)="scrollPackages('left')" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div #packagesRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 8px;">
+              <div *ngFor="let pkg of filteredPackages; let i = index" class="package-card" [ngStyle]="{
+                display: 'inline-block', verticalAlign: 'top', background: i === 1 ? '#e5e5e5' : '#fff', color: '#222', borderRadius: '18px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', width: '320px', marginRight: '24px', padding: '0 0 18px 0', position: 'relative', overflow: 'hidden', border: i === 1 ? '2px solid #bfa046' : '2px solid #eee', opacity: i === 1 ? 0.7 : 1
+              }">
+                <div *ngIf="i === 0" style="position: absolute; left: 0; top: 18px; background: #d32f2f; color: #fff; font-weight: bold; font-size: 1rem; padding: 6px 32px 6px 12px; border-radius: 0 18px 18px 0; z-index: 2; transform: rotate(-20deg);">Dernières places !!</div>
+                <div *ngIf="i === 2" style="position: absolute; left: 0; top: 18px; background: #bfa046; color: #fff; font-weight: bold; font-size: 1rem; padding: 6px 32px 6px 12px; border-radius: 0 18px 18px 0; z-index: 2; transform: rotate(-20deg);">Places limitées !!</div>
+                <div style="border-radius: 16px; overflow: hidden; margin: 18px 18px 0 18px; position: relative;">
+                  <img [src]="pkg.images && pkg.images.length && pkg.images[0].image ? getImageUrl(pkg.images[0].image) : 'assets/images/no-image.png'" alt="Omra" style="width: 100%; height: 180px; object-fit: cover; display: block;" />
+                </div>
+                <div style="padding: 18px 18px 0 18px;">
+                  <div style="font-size: 1.13rem; font-weight: bold; margin-bottom: 6px;">{{pkg.nom_pak}}</div>
+                  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="text-decoration: line-through; color: #888; font-size: 1rem;">999</span>
+                    <span style="color: #bfa046; font-size: 1.13rem; font-weight: bold;">{{pkg.prix}} $</span>
+                  </div>
+                  <ul style="list-style: none; padding: 0; margin: 0 0 12px 0; color: #666; font-size: 0.97rem;">
+                    <li><i class="fas fa-calendar-alt" style="color: #bfa046; margin-right: 6px;"></i> {{pkg.date_debut}} à {{pkg.date_fin}}</li>
+                    <li><i class="fas fa-hotel" style="color: #bfa046; margin-right: 6px;"></i> Ville de départ: {{pkg.ville_depart}}</li>
+                    <li><i class="fas fa-users" style="color: #bfa046; margin-right: 6px;"></i> Quantité: {{pkg.qte_package}}</li>
+                    <li *ngIf="pkg.agence" style="display: flex; align-items: center; gap: 6px;">
+                      <i class="fas fa-building" style="color: #bfa046; margin-right: 6px;"></i>
+                      <span *ngIf="pkg.agence.logo_agence" style="display: flex; align-items: center; gap: 4px;">
+                        <img [src]="getImageUrl(pkg.agence.logo_agence)" 
+                             [alt]="pkg.agence.nomagence" 
+                             style="width: 16px; height: 16px; object-fit: contain; border-radius: 2px;">
+                        {{ pkg.agence.nomagence }}
+                      </span>
+                      <span *ngIf="!pkg.agence.logo_agence">
+                        {{ pkg.agence.nomagence }}
+                      </span>
+                    </li>
+                  </ul>
+                  <div style="display: flex; gap: 12px;">
+                    <button style="flex: 1; background: #bfa046; color: #fff; border: none; border-radius: 24px; padding: 10px 0; font-size: 1rem; font-weight: 500; cursor: pointer;">Réserver</button>
+                    <button (click)="$event.stopPropagation(); showPackageDetails(pkg);" style="flex: 1; background: #fff; color: #bfa046; border: 2px solid #bfa046; border-radius: 24px; padding: 10px 0; font-size: 1rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">Lire plus <i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button (click)="scrollPackages('right')" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End Section Populaires Forfaits Omra -->
+
+      <!-- Our Hotels Section -->
+      <div class="our-hotels-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Our Hotels</h2>
+              <p style="font-size: 1.1rem; color: #444; margin-top: 8px;">Discover Our Hotels For My Omra</p>
+            </div>
+            <button (click)="goToHotels()" style="background: none; border: none; color: #222; font-weight: 500; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+              Voir tous les hôtels <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <div style="position: relative; margin-top: 32px;">
+            <button (click)="scrollHotels('left')" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div #hotelsRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 8px;">
+              <div *ngFor="let hotel of hotels" class="hotel-card" [ngStyle]="{
+                display: 'inline-block',
+                verticalAlign: 'top',
+                background: '#fff',
+                color: '#222',
+                borderRadius: '14px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                width: '320px',
+                minHeight: 'auto',
+                marginRight: '18px',
+                padding: '0',
+                position: 'relative',
+                overflow: 'hidden',
+                border: '1.5px solid #eee'
+              }">
+                <!-- Hotel Image Top -->
+                <div style="width: 100%; aspect-ratio: 1/1; background: #f5f5f5; display: flex; align-items: center; justify-content: center; border-radius: 14px 14px 0 0; overflow: hidden;">
+                  <img [src]="hotel.images && hotel.images.length && hotel.images[0].image ? getImageUrl(hotel.images[0].image) : 'assets/images/no-image.png'"
+                       [alt]="hotel.nom_hotels"
+                       style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                </div>
+                <!-- Hotel Info Below -->
+                <div style="padding: 14px 16px 0 16px; display: flex; flex-direction: column; justify-content: flex-start;">
+                  <div style="font-size: 1.01rem; font-weight: bold; margin-bottom: 3px; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{hotel.nom_hotels}}</div>
+                  <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 2px;">
+                    <ng-container *ngFor="let star of [].constructor(hotel.nbr_etoile)"><i class="fas fa-star" style="color: #ffd700; font-size: 0.95rem;"></i></ng-container>
+                    <span style="color: #222; font-size: 0.93rem; font-weight: 500;">{{hotel.nbr_etoile}}</span>
+                  </div>
+                  <div style="color: #888; font-size: 0.89rem; margin-bottom: 7px; display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <i class="fas fa-map-marker-alt" style="color: #bfa046;"></i>
+                    {{hotel.localisation}}
+                  </div>
+                  <!-- Agency Prices -->
+                  <div style="margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+                      <div style="display: flex; align-items: center; gap: 5px;">
+                        <img src="assets/images/agodalogo.png" alt="Agoda" style="height: 14px;" />
+                        <span style="font-size: 0.93rem; color: #222; font-weight: 500;">agoda</span>
+                      </div>
+                      <span style="font-size: 0.93rem; color: #222; font-weight: 500;">{{hotel.prix_agoda ? (hotel.prix_agoda | number:'1.2-2') : '—'}}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+                      <div style="display: flex; align-items: center; gap: 5px;">
+                        <img src="assets/images/expedia.png" alt="Expedia" style="height: 14px;" />
+                        <span style="font-size: 0.93rem; color: #f5b800; font-weight: 600;">Expedia</span>
+                      </div>
+                      <span style="font-size: 0.93rem; color: #222; font-weight: 500;">{{hotel.prix_expedia ? (hotel.prix_expedia | number:'1.2-2') : '—'}}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                      <div style="display: flex; align-items: center; gap: 5px;">
+                        <img src="assets/images/bookinglogo.png" alt="Booking.com" style="height: 14px;" />
+                        <span style="font-size: 0.93rem; color: #003580; font-weight: 700;">Booking.com</span>
+                      </div>
+                      <span style="font-size: 0.93rem; color: #bfa046; font-weight: 600;">{{hotel.prix_booking ? (hotel.prix_booking | number:'1.2-2') : '—'}} <span style="color: #bfa046; font-weight: 500;">$/Night</span></span>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 8px; margin-top: auto; align-items: center; padding-bottom: 12px;">
+                    <button style="flex: 1; background: #bfa046; color: #fff; border: none; border-radius: 18px; padding: 7px 0; font-size: 0.97rem; font-weight: 600; cursor: pointer;">Réserver</button>
+                    <button (click)="$event.stopPropagation(); showHotelDetails(hotel);" style="flex: 1; background: #fff; color: #bfa046; border: 1.5px solid #bfa046; border-radius: 18px; padding: 7px 0; font-size: 0.97rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">Lire plus <i class="fas fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button (click)="scrollHotels('right')" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End Our Hotels Section -->
+
+      <!-- Sacred Destinations Section -->
+      <div class="sacred-destinations-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Destinations sacrées à explorer</h2>
+              <p style="font-size: 1.1rem; color: #444; margin-top: 8px;">Découvrez la beauté et l'importance des sites sacrés à La Mecque et à Médine</p>
+            </div>
+          </div>
+          <div style="position: relative; margin-top: 32px; display: flex; align-items: center; justify-content: center;">
+            <button (click)="prevDestination()" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div style="display: flex; align-items: center; gap: 40px; background: none;">
+              <div style="background: #bfa046; color: #fff; border-radius: 18px; padding: 32px 32px 32px 32px; max-width: 480px; min-width: 340px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 2rem; font-weight: bold; margin-bottom: 16px; color: #fff;">{{currentDestination.title}}</h3>
+                <p style="font-size: 1.08rem; color: #fff; margin-bottom: 24px; line-height: 1.5;">{{currentDestination.description}}</p>
+                <button style="background: #fff; color: #bfa046; border: none; border-radius: 24px; padding: 12px 32px; font-size: 1.1rem; font-weight: 500; cursor: pointer;">Aller à l'application</button>
+              </div>
+              <div style="border-radius: 18px; overflow: hidden; min-width: 340px; max-width: 480px; height: 280px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center;">
+                <img [src]="currentDestination.image" [alt]="currentDestination.title" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+              </div>
+            </div>
+            <button (click)="nextDestination()" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End Sacred Destinations Section -->
+
+      <!-- New Custom Section (App Promotion, Reference Accurate) -->
+      <div class="custom-section app-promo-section" style="max-width: 1200px; margin: 40px auto 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: center; gap: 48px; background: #181828; border-radius: 24px; color: #fff; min-height: unset; width: 100%; box-sizing: border-box;">
+        <!-- Left: App Info -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-width: 320px; max-width: 420px; padding-left: 40px; gap: 0;">
+          <h2 style="font-size: 2.2rem; font-family: 'Playfair Display', Georgia, serif; font-weight: bold; margin-bottom: -24px; color: #fff; line-height: 1.1; position: relative; z-index: 2;">
+            Stay Connected with <span style='color: #e2c76c;'>My Omrah App</span>
+          </h2>
+          <div style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 18px;">
+            <img src="assets/images/image iphone .png" alt="App Screenshots on Phones" style="height: 340px; width: auto; display: block;" />
+          </div>
+          <div style="display: flex; flex-direction: row; align-items: center; gap: 18px; margin-top: 0; margin-left: 0; justify-content: center; width: 100%;">
+            <a href="#" style="display: inline-block;"><img src="assets/images/google-play.png" alt="Get it on Google Play" style="height: 48px; margin-right: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);" /></a>
+            <a href="#"><img src="assets/images/app-store.png" alt="Download on the App Store" style="height: 48px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);" /></a>
+          </div>
+        </div>
+        <!-- Right: Hexagon Features Image -->
+        <div style="flex: 1.2; display: flex; align-items: center; justify-content: center; min-width: 320px; max-width: 600px; padding-right: 40px;">
+          <div class="hexagon-features-image" style="width: 420px; height: 420px; display: flex; align-items: center; justify-content: center; background: #181828; border-radius: 24px;">
+            <img src="assets/images/image.png" alt="App Services Features" style="max-width: 100%; max-height: 100%; border-radius: 24px;" />
+          </div>
+        </div>
+      </div>
+      <!-- End New Custom Section -->
+
+      <!-- Customize Your Omrah Journey Section -->
+      <div style="margin: 60px 0 0 0; display: flex; align-items: stretch; justify-content: center; gap: 40px; background: #faf6ed; border-radius: 24px; padding: 0 0 48px 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
+        <div style="flex: none; width: 340px; height: 340px; border-radius: 16px; overflow: hidden; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+          <img src='assets/images/Personnalisez votre expérience Omra.jpg' alt='Personnalisez votre expérience Omra' style='width: 100%; height: 100%; object-fit: cover; display: block;' />
+        </div>
+        <div style="flex: 1; background: #bfa046; border-radius: 18px; padding: 48px 36px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; min-width: 320px; max-width: 600px;">
+          <h2 style="color: #fff; font-size: 2rem; font-family: 'Playfair Display', Georgia, serif; font-weight: bold; margin-bottom: 18px;">Personnalisez votre expérience Omra</h2>
+          <p style="color: #fff; font-size: 1.13rem; margin-bottom: 32px;">Personnalisez votre parcours spirituel, à votre façon</p>
+          <button style="background: #fff; color: #bfa046; border: none; border-radius: 24px; padding: 14px 38px; font-size: 1.1rem; font-weight: 500; cursor: pointer;">Commencer</button>
+        </div>
+      </div>
+      <!-- End Customize Your Omrah Journey Section -->
+
+      <!-- Avis de nos clients -->
+      <div style="background: #faf6ed; border-radius: 24px; padding: 48px 0; margin: 60px 0;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 8px;">
+          <h2 style="font-size: 2.3rem; font-weight: bold; margin: 0;">Avis de nos clients</h2>
+          <button (click)="toggleCommentForm()" style="background: #bfa046; color: #fff; border: none; border-radius: 18px; padding: 10px 28px; font-size: 1.1rem; font-weight: 500; cursor: pointer;">
+            Ajouter un avis
+          </button>
+        </div>
+        <p style="text-align: center; color: #444; font-size: 1.1rem; margin-bottom: 36px;">
+          Découvrez les retours authentiques de nos clients satisfaits
+        </p>
+        
+        <!-- Comments Carousel -->
+        <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+          <!-- Left Arrow -->
+          <button (click)="scrollComments('left')" style="position: absolute; left: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          
+          <!-- Comments Container -->
+          <div #commentsRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; display: flex; gap: 24px; padding-bottom: 8px;">
+            <div *ngFor="let feedback of clientFeedbacks" style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 24px; width: 340px; min-height: 180px; flex-shrink: 0;">
+              <p style="font-size: 1.01rem; color: #222; margin-bottom: 18px;">{{feedback.feedback}}</p>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img *ngIf="feedback.photo" [src]="feedback.photo" alt="{{feedback.name}}" style="width: 40px; height: 40px; border-radius: 50%;" />
+                <div>
+                  <div style="font-weight: bold; color: #222;">{{feedback.name}}</div>
+                  <div style="color: #888; font-size: 0.95rem;">{{feedback.job_title}}</div>
+                </div>
+                <div style="margin-left: auto;">
+                  <ng-container *ngFor="let star of [].constructor(feedback.rating)"><i class="fas fa-star" style="color: #ffd700;"></i></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Arrow -->
+          <button (click)="scrollComments('right')" style="position: absolute; right: -32px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 48px; height: 48px; font-size: 2rem; color: #bfa046; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- The compact card-style comment form -->
+        <div *ngIf="showCommentForm" style="max-width: 400px; margin: 24px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 22px 18px;">
+          <form (ngSubmit)="submitFeedback()" #feedbackForm="ngForm" style="display: flex; flex-direction: column; gap: 12px;">
+            <input name="name" [(ngModel)]="feedbackFormData.name" required placeholder="Nom*" style="padding: 8px; border-radius: 6px; border: 1.2px solid #ccc; font-size: 0.98rem;" />
+            <input name="job_title" [(ngModel)]="feedbackFormData.job_title" placeholder="Profession (optionnel)" style="padding: 8px; border-radius: 6px; border: 1.2px solid #ccc; font-size: 0.98rem;" />
+            <textarea name="feedback" [(ngModel)]="feedbackFormData.feedback" required placeholder="Votre commentaire*" rows="2" style="padding: 8px; border-radius: 6px; border: 1.2px solid #ccc; font-size: 0.98rem;"></textarea>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <label style="font-size: 0.98rem; color: #444;">Note* :</label>
+              <ng-container *ngFor="let star of [1,2,3,4,5]">
+                <i class="fas fa-star" [ngStyle]="{color: feedbackFormData.rating >= star ? '#ffd700' : '#ccc', fontSize: '1.1rem', cursor: 'pointer'}" (click)="feedbackFormData.rating = star"></i>
+              </ng-container>
+            </div>
+            <input type="file" name="photo" (change)="onPhotoSelected($event)" accept="image/*" style="font-size: 0.95rem;" />
+            <button type="submit" [disabled]="feedbackSubmitting" style="background: #bfa046; color: #fff; border: none; border-radius: 16px; padding: 8px 0; font-size: 1rem; font-weight: 500; cursor: pointer; margin-top: 6px;">Envoyer</button>
+            <div *ngIf="feedbackSuccess" style="color: #2ecc71; font-weight: 500; margin-top: 6px;">Merci pour votre avis ! Il sera publié après validation.</div>
+            <div *ngIf="feedbackError" style="color: #d32f2f; font-weight: 500; margin-top: 6px;">Erreur lors de l'envoi. Veuillez réessayer.</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Partner Logos Bar -->
+      <div class="partner-logos-section" style="background: #fff; padding: 40px 0; margin: 60px 0; position: relative; border-radius: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+          <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+            <!-- Left Arrow -->
+            <button (click)="scrollLogos('left')" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; border: 1px solid #e2c76c; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; color: #e2c76c; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <!-- Logos Container -->
+            <div #logosRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; display: flex; align-items: center; gap: 48px; padding: 0 20px;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/gitlablogo.png" alt="GitLab" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">GitLab</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/canvalogo.png" alt="Canva" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Canva</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/slacklogo.png" alt="Slack" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Slack</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/cartalogo.png" alt="Carta" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Carta</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/Codecademy_Logo.png" alt="Codecademy" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Codecademy</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/grammarly_logo-removebg-preview.png" alt="Grammarly" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Grammarly</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; min-width: fit-content;">
+                <img src="assets/images/clearbit_logo-removebg-preview.png" alt="Clearbit" style="height: 32px; filter: grayscale(100%); opacity: 0.7;" />
+                <span style="color: #666; font-size: 1rem; font-weight: 500;">Clearbit</span>
+              </div>
+            </div>
+            
+            <!-- Right Arrow -->
+            <button (click)="scrollLogos('right')" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; border: 1px solid #e2c76c; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; color: #e2c76c; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer style="background: #181828; color: #fff; padding: 0 0 0 0; position: relative; margin-top: 60px; font-family: inherit;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: flex-start; min-height: 260px;">
+        <div style="flex: 1; min-width: 220px; max-width: 320px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 36px;">
+          <img src="assets/images/omralogo.jpg" alt="Omra Logo" style="height: 48px; margin-bottom: 8px;" />
+          <div style="font-size: 1.15rem; font-weight: bold; color: #e2c76c; margin-bottom: 6px;">Votre partenaire de confiance pour une Omra sans faille</div>
+          <div style="font-size: 1rem; color: #eee; margin-bottom: 0;">Nous nous engageons à rendre votre voyage spirituel aussi fluide et significatif que possible. Forts de plusieurs années d'expérience et d'une compréhension approfondie des besoins des pèlerins.</div>
+        </div>
+        <div style="flex: 1; min-width: 160px; max-width: 180px; margin-top: 36px;">
+          <div style="font-weight: bold; color: #fff; margin-bottom: 12px;">Liens rapides</div>
+          <ul style="list-style: none; padding: 0; margin: 0; color: #eee; font-size: 1rem;">
+            <li style="margin-bottom: 6px;"><a routerLink="/" style="color: #eee; text-decoration: none;">Accueil</a></li>
+            <li style="margin-bottom: 6px;"><a routerLink="/about" style="color: #eee; text-decoration: none;">À propos</a></li>
+            <li style="margin-bottom: 6px;"><a routerLink="/user/packages" style="color: #eee; text-decoration: none;">Nos forfaits</a></li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 160px; max-width: 180px; margin-top: 36px;">
+          <div style="font-weight: bold; color: #fff; margin-bottom: 12px;">Pages</div>
+          <ul style="list-style: none; padding: 0; margin: 0; color: #eee; font-size: 1rem;">
+            <li style="margin-bottom: 6px;"><a routerLink="/discover" style="color: #eee; text-decoration: none;">Découvrir</a></li>
+            <li style="margin-bottom: 6px;"><a routerLink="/design" style="color: #eee; text-decoration: none;">Concevez votre Omra</a></li>
+            <li style="margin-bottom: 6px;"><a routerLink="/contact" style="color: #eee; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+        <div style="flex: 1.2; min-width: 220px; max-width: 320px; margin-top: 36px;">
+          <div style="font-weight: bold; color: #fff; margin-bottom: 8px;">Moyens de paiement</div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <img src="assets/images/visalogo.png" alt="Visa" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+            <img src="assets/images/mastercardlogo.png" alt="MasterCard" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+            <img src="assets/images/paypallogo.png" alt="PayPal" style="height: 28px; background: #fff; border-radius: 4px; padding: 2px 6px;" />
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #333; margin-top: 36px; padding: 12px 0 8px 0; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin-left: auto; margin-right: auto; color: #bbb; font-size: 0.98rem;">
+        <div style="display: flex; align-items: center; gap: 18px;">
+          <button style="background: #222; color: #fff; border: 1px solid #444; border-radius: 6px; padding: 4px 16px; font-size: 1rem; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <i class="fas fa-globe"></i> Français
+          </button>
+        </div>
+        <span>© 2024 MY Omra. Tous droits réservés.</span>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="color: #fff; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer Section -->
+
+    </body>
+</html>

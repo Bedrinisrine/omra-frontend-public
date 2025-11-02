@@ -1,0 +1,7 @@
+{
+    "/transcript/*": {
+      "target": "http://217.160.21.217:8000",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }

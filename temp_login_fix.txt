@@ -1,0 +1,7 @@
+          if (user.is_staff) {
+            console.log('LoginComponent: User is admin, redirecting to role-based dashboard');
+            this.router.navigate(['/admin-redirect']);
+          } else {
+            console.log('LoginComponent: User is not admin, redirecting to user dashboard');
+            this.router.navigate(['/user']);
+          }

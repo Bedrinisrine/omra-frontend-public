@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Global Responsive Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html { font-size: 15px; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  html { font-size: 15.5px; }
+}
+
+@media (min-width: 1025px) {
+  html { font-size: 16px; }
+}
+
+/* Responsive containers */
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 576px) {
+  .container { max-width: 540px; }
+}
+
+@media (min-width: 768px) {
+  .container { max-width: 720px; }
+}
+
+@media (min-width: 992px) {
+  .container { max-width: 960px; }
+}
+
+@media (min-width: 1200px) {
+  .container { max-width: 1140px; }
+}
+
+/* Responsive utilities */
+.hide-mobile {
+  display: block;
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+  
+  .hide-desktop {
+    display: block;
+  }
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive buttons */
+.btn-responsive {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+}
+
+/* Responsive cards grid */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 576px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

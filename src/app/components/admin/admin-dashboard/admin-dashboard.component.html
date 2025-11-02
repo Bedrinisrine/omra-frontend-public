@@ -1,0 +1,15 @@
+<div class="admin-dashboard">
+  <nav class="admin-nav">
+    <h2>Admin Dashboard</h2>
+    <ul>
+      <li><a routerLink="/admin/hotels">Manage Hotels</a></li>
+      <li><a routerLink="/admin/agencies">Manage Agencies</a></li>
+      <li><a routerLink="/admin/packages">Manage Packages</a></li>
+      <li><a routerLink="/admin/feedback-moderation" class="sidebar-link">Manage Feedback</a></li>
+      <li><button (click)="logout()">Logout</button></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div> 

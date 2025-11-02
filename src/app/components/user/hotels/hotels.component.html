@@ -1,0 +1,29 @@
+<div class="hotel-list">
+  <div *ngFor="let hotel of hotels" class="hotel-item">
+    <div class="hotel-image-container">
+      <img [src]="hotel.images && hotel.images[0] ? getImageUrl(hotel.images[0].image) : 'assets/images/no-image.png'" 
+           [alt]="hotel.nom_hotels" 
+           class="hotel-item-image">
+    </div>
+    <div class="hotel-details">
+      <div class="hotel-header">
+        <div class="hotel-title-stars">
+          <h3>{{ hotel.nom_hotels }}</h3>
+          <div class="hotel-stars">
+            <i *ngFor="let star of [].constructor(hotel.nbr_etoile)" class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-meta">
+        <p class="location"><i class="fas fa-map-marker-alt"></i> {{ hotel.ville_arr }} ({{ hotel.nbr_nuit }} nights)</p>
+      </div>
+      <div class="hotel-pricing">
+        <span class="price">${{ hotel.prix }}</span>
+      </div>
+      <div class="hotel-actions">
+        <button class="btn-reservation">Réserver</button>
+        <button class="btn-read-more" (click)="showHotelDetails(hotel)">Lire plus <i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div> 

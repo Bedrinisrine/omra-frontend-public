@@ -1,0 +1,25 @@
+<div class="hotel-admin-dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Hotel Management Dashboard</h1>
+      <div class="user-info">
+        <span>Welcome, {{ currentUser?.username }}</span>
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="dashboard-cards">
+      <div class="card hotel-card" (click)="navigateToHotels()">
+        <div class="card-icon">
+          <i class="fas fa-hotel"></i>
+        </div>
+        <div class="card-content">
+          <h3>Manage Hotels</h3>
+          <p>Add, edit, and manage hotel listings</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

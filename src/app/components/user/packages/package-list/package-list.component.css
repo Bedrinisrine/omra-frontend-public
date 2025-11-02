@@ -1,0 +1,751 @@
+/* Add styles for your package list here */ 
+.main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #232e3c;
+  padding: 0 40px;
+  height: 60px; /* Reduced height for a more compact look */
+  position: relative;
+  z-index: 100;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Slightly reduced gap */
+}
+
+.navbar-logo img {
+  height: 32px; /* Smaller logo */
+  width: auto;
+}
+
+.navbar-logo span {
+  color: #fff;
+  font-size: 1.1rem; /* Smaller font */
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* Reduced gap */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.98rem; /* Smaller font */
+  transition: color 0.2s;
+  padding: 6px 0;
+  position: relative;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.navbar-menu li a.active,
+.navbar-menu li a:hover {
+  color: #f7c948;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  background-image: url('../../../../../assets/images/hotel3.jpg'); /* Changed image path */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Color of the title text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for readability */
+}
+
+.hero-title {
+  font-size: 3em; /* Adjust font size as needed */
+  margin: 0;
+}
+
+/* Filter Bar */
+.filter-bar-container {
+  position: relative;
+  margin-top: -40px; /* Overlap with hero section */
+  z-index: 10;
+  width: 100%; /* Ensure it spans full width */
+  display: flex; /* To center the filter bar inside */
+  justify-content: center; /* Center the filter bar */
+  padding: 0 15px; /* Add some padding on smaller screens */
+  box-sizing: border-box;
+}
+
+.filter-bar-modern {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+  padding: 18px 28px 18px 28px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.filter-tabs-modern {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tab-button-modern {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #f8f5ea;
+  color: #bfa14a;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 24px;
+  font-size: 1rem;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+}
+
+.tab-button-modern.active, .tab-button-modern:hover {
+  background: #d6b55a;
+  color: #fff;
+}
+
+.tab-button-modern i {
+  font-size: 1.1em;
+}
+
+.filter-inputs-modern {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px; /* Further reduce gap between input groups */
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+
+.input-group-modern {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 32px;
+  padding: 4px 16px; /* Further reduce vertical padding */
+  /* Allow flexibility and set a smaller base width */
+  flex: 1 1 160px; /* Adjust basis */
+  min-width: 120px; /* Adjust minimum width if needed */
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+  font-size: 1rem;
+  position: relative;
+  border: 1.5px solid #ececec;
+  flex-direction: column;
+}
+
+.input-group-modern label {
+  color: #7a7a7a;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  margin-right: 0;
+  font-size: 0.7rem; /* Further reduced font size for label */
+  min-width: 0;
+  letter-spacing: 0.01em;
+  margin-top: 0; /* Ensure no top margin */
+  margin-bottom: 2px; /* Small margin bottom to space from input-icon-wrapper */
+}
+
+.input-icon-wrapper {
+  display: flex;
+  align-items: center; /* Ensure vertical alignment */
+  gap: 4px;
+  width: 100%;
+  position: relative;
+  padding-right: 20px;
+  z-index: 0;
+  margin-top: 0;
+}
+
+.input-icon-wrapper i {
+  color: #d6b55a;
+  margin-right: 0;
+  font-size: 0.9em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.input-icon-wrapper input,
+.input-icon-wrapper select {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 0.95rem;
+  outline: none;
+  padding: 0;
+  color: #222;
+  min-width: 0;
+  cursor: pointer;
+  font-weight: 500;
+  padding-right: 0;
+  line-height: 1.1;
+  height: 1.1em;
+  position: static;
+  opacity: 1;
+  z-index: auto;
+  width: 100%;
+  height: auto;
+}
+
+.input-icon-wrapper input[type="date"] {
+  color: #222;
+  font-weight: 500;
+  position: static;
+  opacity: 1;
+  z-index: auto;
+  width: auto;
+  height: auto;
+  padding-right: initial;
+}
+
+.input-group-modern input::placeholder {
+  color: #bdbdbd;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.input-group-modern select {
+  min-width: 50px;
+  position: static;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  z-index: auto;
+  padding-right: 20px; 
+}
+
+.input-group-modern select::-ms-expand {
+    display: none;
+}
+
+.btn-search-modern {
+  background-color: #d6b55a;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.btn-search-modern i {
+  font-size: 1.1em;
+}
+
+.btn-search-modern:hover {
+  background-color: #bfa14a;
+}
+
+@media (max-width: 900px) {
+  .filter-bar-modern {
+    padding: 10px 4px 8px 4px;
+  }
+  .filter-inputs-modern {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .btn-search-modern {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 6px;
+    justify-content: center;
+  }
+  .hero-content {
+    padding: 0 0 0 1vw;
+    max-width: 98vw;
+  }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .hero-section p {
+    font-size: 1rem;
+  }
+  .hero-buttons .btn {
+    font-size: 1rem;
+    padding: 10px 18px;
+  }
+}
+
+/* Styles for the new list layout */
+.package-list-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.package-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between package items */
+}
+
+.package-item {
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.package-image-container {
+  flex-shrink: 0; /* Prevent image container from shrinking */
+  width: 250px; /* Fixed width for the image section */
+  height: auto; /* Allow height to adjust based on content */
+  overflow: hidden;
+}
+
+.package-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+}
+
+.package-details-list {
+  flex-grow: 1; /* Allow details section to take up remaining space */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between elements */
+}
+
+.package-header h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.package-meta p {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.package-meta i {
+  color: #e2c76c; /* Golden color for icons */
+}
+
+/* Added style for the package price in the list */
+.package-price-list {
+    margin-top: 10px; /* Space above price */
+    text-align: right; /* Align price to the right */
+}
+
+.package-price-list .price {
+    font-size: 1.2rem; /* Slightly smaller font than old grid price */
+    font-weight: bold;
+    color: #28a745; /* Green color for price */
+}
+
+.package-actions {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-top: 15px; /* Space above buttons */
+}
+
+.btn-reservation, .btn-read-more {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px; /* Slightly less rounded than pill shape */
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  flex-grow: 1; /* Allow buttons to grow */
+  text-align: center;
+}
+
+.btn-reservation {
+  background-color: #e2c76c; /* Golden color */
+  color: #fff;
+}
+
+.btn-reservation:hover {
+  background-color: #d6b55a; /* Darker golden */
+}
+
+.btn-read-more {
+  background-color: transparent; /* Transparent background */
+  color: #e2c76c; /* Golden text */
+  border: 1px solid #e2c76c; /* Golden border */
+}
+
+.btn-read-more:hover {
+  background-color: #e2c76c; /* Golden background */
+  color: #fff; /* White text */
+}
+
+.no-packages {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Footer Styles */
+.main-footer {
+  background-color: #232e3c; /* Dark background color */
+  color: #fff; /* White text color */
+  padding: 40px 20px 20px; /* Padding top, horizontal, bottom */
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between; /* Distribute sections */
+  max-width: 1200px; /* Align with main content */
+  margin: 0 auto 30px; /* Center and add space at the bottom */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 30px; /* Space between columns */
+}
+
+.footer-section {
+  flex: 1; /* Allow sections to grow */
+  min-width: 200px; /* Minimum width before wrapping */
+}
+
+.footer-section.about {
+  flex-basis: 300px; /* Give more space to the about section */
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.footer-logo img {
+  height: 32px;
+  width: auto;
+}
+
+.footer-logo span {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.footer-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ccc; /* Lighter text for paragraphs */
+  margin-bottom: 10px;
+}
+
+.footer-section h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  color: #fff; /* White color for headings */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section li a {
+  color: #ccc; /* Lighter link color */
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.footer-section li a:hover {
+  color: #f7c948; /* Golden hover color */
+}
+
+.payment-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow icons to wrap */
+}
+
+.payment-icons img {
+  height: 30px; /* Adjust size of payment icons */
+  width: auto;
+  background-color: #fff; /* White background for icons */
+  padding: 5px; /* Add some padding */
+  border-radius: 4px; /* Slightly rounded corners */
+}
+
+.language-switcher {
+  background-color: #333; /* Darker button background */
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+  transition: background-color 0.2s;
+}
+
+.language-switcher:hover {
+  background-color: #444;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333; /* Separator line */
+  padding-top: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping */
+  font-size: 0.9rem;
+  color: #ccc; /* Lighter text color */
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social a {
+  color: #ccc; /* Lighter icon color */
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
+  color: #f7c948; /* Golden hover color */
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack footer sections */
+    gap: 20px;
+  }
+
+  .footer-section {
+    flex-basis: 100%; /* Full width for stacked sections */
+  }
+
+  .footer-section.about {
+    flex-basis: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column; /* Stack bottom elements */
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+/* Omra Filters Container */
+.omra-filters-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Omra Filters */
+.omra-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+.omra-filter-button {
+  padding: 12px 25px;
+  border: 1px solid #d4af37; /* Gold border for inactive */
+  border-radius: 25px;
+  background-color: #d4af37; /* Gold background for inactive */
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 150px;
+}
+
+.omra-filter-button:hover {
+  background-color: #c09f30; /* Slightly darker gold on hover */
+  transform: translateY(-2px);
+}
+
+.omra-filter-button.active {
+  background-color: #222831; /* Dark blue/black for active */
+  color: white;
+  border-color: #222831;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.omra-filter-button.active i {
+  margin-right: 8px;
+}
+
+/* Special style for Ramadan Omra button */
+.omra-filter-button.ramadan {
+  background-color: #1e3a8a; /* Blue background for Ramadan */
+  border-color: #1e3a8a;
+  color: white;
+}
+
+.omra-filter-button.ramadan:hover {
+  background-color: #1e40af; /* Darker blue on hover */
+  border-color: #1e40af;
+}
+
+.omra-filter-button.ramadan.active {
+  background-color: #1e3a8a; /* Keep blue when active */
+  border-color: #1e3a8a;
+  box-shadow: 0 2px 5px rgba(30, 58, 138, 0.3);
+}
+
+/* Responsive adjustments for omra filters */
+@media (max-width: 768px) {
+  .omra-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .omra-filter-button {
+    width: 100%;
+    max-width: 300px;
+  }
+} 
+
+/* Status Badge Styles */
+.status-badge {
+  animation: pulse 2s infinite;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.8rem !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  margin-bottom: 12px !important;
+  display: inline-block !important;
+  text-align: center !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Specific status badge colors */
+.status-badge.limited {
+  background: linear-gradient(45deg, #bfa046, #d6b55a) !important;
+  color: white !important;
+}
+
+.status-badge.last-places {
+  background: linear-gradient(45deg, #d32f2f, #dc3545) !important;
+  color: white !important;
+  animation: urgent-pulse 1.5s infinite;
+}
+
+.status-badge.sold-out {
+  background: linear-gradient(45deg, #6c757d, #495057) !important;
+  color: white !important;
+  animation: none;
+}
+
+@keyframes urgent-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(211, 47, 47, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+  }
+}
+
+/* Disabled button styles */
+.btn-reservation:disabled {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+.btn-reservation:disabled:hover {
+  background-color: #6c757d !important;
+  transform: none !important;
+  box-shadow: none !important;
+} 

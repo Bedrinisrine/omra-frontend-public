@@ -1,0 +1,74 @@
+<div class="agency-form-container">
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Edit Agency' : 'Add New Agency' }}</h2>
+  </div>
+
+  <form [formGroup]="agencyForm" (ngSubmit)="onSubmit()" class="agency-form">
+    <!-- Agency Name -->
+    <div class="form-group">
+      <label for="nomagence">Agency Name *</label>
+      <input type="text" id="nomagence" formControlName="nomagence" class="form-control" 
+             placeholder="Enter agency name">
+      <div *ngIf="agencyForm.get('nomagence')?.invalid && agencyForm.get('nomagence')?.touched" 
+           class="error-message">
+        Agency name is required
+      </div>
+    </div>
+
+    <!-- Agency Address -->
+    <div class="form-group">
+      <label for="adr_agence">Agency Address</label>
+      <input type="text" id="adr_agence" formControlName="adr_agence" class="form-control" 
+             placeholder="Enter agency address">
+    </div>
+
+    <!-- Agency Phone -->
+    <div class="form-group">
+      <label for="tel">Phone Number</label>
+      <input type="tel" id="tel" formControlName="tel" class="form-control" 
+             placeholder="Enter phone number">
+    </div>
+
+    <!-- Agency Logo -->
+    <div class="form-group">
+      <label for="logo_agence">Agency Logo</label>
+      <input type="file" id="logo_agence" (change)="onFileSelected($event)" 
+             class="form-control-file" accept="image/*">
+      <small class="form-text text-muted">
+        Recommended size: 200x200 pixels. Supported formats: JPG, PNG, GIF
+      </small>
+    </div>
+
+    <!-- Logo Preview -->
+    <div *ngIf="existingLogoUrl" class="form-group">
+      <label>Logo Preview:</label>
+      <div class="logo-preview">
+        <img [src]="existingLogoUrl" alt="Agency Logo" class="preview-image">
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeLogo()">
+          <i class="fas fa-trash"></i> Remove Logo
+        </button>
+      </div>
+    </div>
+
+    <!-- Error and Success Messages -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="agencyForm.invalid || loading">
+        <i class="fas fa-save"></i>
+        {{ loading ? 'Saving...' : (isEdit ? 'Update Agency' : 'Add Agency') }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="router.navigate(['/admin/agencies'])" 
+              [disabled]="loading">
+        <i class="fas fa-times"></i> Cancel
+      </button>
+    </div>
+  </form>
+</div> 

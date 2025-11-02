@@ -1,0 +1,286 @@
+<div class="hotel-form-container">
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Edit Hotel' : 'Add New Hotel' }}</h2>
+  </div>
+
+  <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" class="hotel-form">
+    <div class="form-group">
+      <label for="nom_hotels">Hotel Name</label>
+      <input
+        type="text"
+        id="nom_hotels"
+        formControlName="nom_hotels"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('nom_hotels')?.invalid && hotelForm.get('nom_hotels')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nom_hotels')?.errors?.['required']">
+        Hotel name is required
+      </div>
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nom_hotels')?.errors?.['minlength']">
+        Hotel name must be at least 3 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prix">Price</label>
+      <input
+        type="number"
+        id="prix"
+        formControlName="prix"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('prix')?.invalid && hotelForm.get('prix')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('prix')?.errors?.['required']">
+        Price is required
+      </div>
+      <div class="invalid-feedback" *ngIf="hotelForm.get('prix')?.errors?.['min']">
+        Price must be greater than 0
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="prix_agoda">Agoda Price</label>
+      <input
+        type="number"
+        id="prix_agoda"
+        formControlName="prix_agoda"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('prix_agoda')?.invalid && hotelForm.get('prix_agoda')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('prix_agoda')?.errors?.['required']">
+        Agoda price is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="prix_expedia">Expedia Price</label>
+      <input
+        type="number"
+        id="prix_expedia"
+        formControlName="prix_expedia"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('prix_expedia')?.invalid && hotelForm.get('prix_expedia')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('prix_expedia')?.errors?.['required']">
+        Expedia price is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="prix_booking">Booking.com Price</label>
+      <input
+        type="number"
+        id="prix_booking"
+        formControlName="prix_booking"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('prix_booking')?.invalid && hotelForm.get('prix_booking')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('prix_booking')?.errors?.['required']">
+        Booking.com price is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="adresse">Address</label>
+      <input
+        type="text"
+        id="adresse"
+        formControlName="adresse"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('adresse')?.invalid && hotelForm.get('adresse')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('adresse')?.errors?.['required']">
+        Address is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_debut">Start Date</label>
+      <input
+        type="date"
+        id="date_debut"
+        formControlName="date_debut"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('date_debut')?.invalid && hotelForm.get('date_debut')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('date_debut')?.errors?.['required']">
+        Start date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_fin">End Date</label>
+      <input
+        type="date"
+        id="date_fin"
+        formControlName="date_fin"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('date_fin')?.invalid && hotelForm.get('date_fin')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('date_fin')?.errors?.['required']">
+        End date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ville_arr">City</label>
+      <input
+        type="text"
+        id="ville_arr"
+        formControlName="ville_arr"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('ville_arr')?.invalid && hotelForm.get('ville_arr')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('ville_arr')?.errors?.['required']">
+        City is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nbpers">Number of People</label>
+      <input
+        type="number"
+        id="nbpers"
+        formControlName="nbpers"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('nbpers')?.invalid && hotelForm.get('nbpers')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nbpers')?.errors?.['required']">
+        Number of people is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nbrchambre">Number of Rooms</label>
+      <input
+        type="number"
+        id="nbrchambre"
+        formControlName="nbrchambre"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('nbrchambre')?.invalid && hotelForm.get('nbrchambre')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nbrchambre')?.errors?.['required']">
+        Number of rooms is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_etoile">Star Rating</label>
+      <input
+        type="number"
+        id="nbr_etoile"
+        formControlName="nbr_etoile"
+        class="form-control"
+        min="1"
+        max="5"
+        [class.is-invalid]="hotelForm.get('nbr_etoile')?.invalid && hotelForm.get('nbr_etoile')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nbr_etoile')?.errors?.['required']">
+        Star rating is required
+      </div>
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nbr_etoile')?.errors?.['min'] || hotelForm.get('nbr_etoile')?.errors?.['max']">
+        Star rating must be between 1 and 5
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nbr_nuit">Number of Nights</label>
+      <input
+        type="number"
+        id="nbr_nuit"
+        formControlName="nbr_nuit"
+        class="form-control"
+        [class.is-invalid]="hotelForm.get('nbr_nuit')?.invalid && hotelForm.get('nbr_nuit')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('nbr_nuit')?.errors?.['required']">
+        Number of nights is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="distance_haram">Distance to Haram (km)</label>
+      <input
+        type="number"
+        id="distance_haram"
+        formControlName="distance_haram"
+        class="form-control"
+        step="0.1"
+        [class.is-invalid]="hotelForm.get('distance_haram')?.invalid && hotelForm.get('distance_haram')?.touched"
+      >
+      <div class="invalid-feedback" *ngIf="hotelForm.get('distance_haram')?.errors?.['required']">
+        Distance is required
+      </div>
+      <div class="invalid-feedback" *ngIf="hotelForm.get('distance_haram')?.errors?.['min']">
+        Distance must be greater than 0
+      </div>
+    </div>
+
+    <!-- Collaborators Multi-Select -->
+    <div class="form-group">
+      <label>Collaborators</label>
+      <div *ngFor="let collab of COLLABORATOR_CHOICES">
+        <input type="checkbox"
+               [value]="collab.value"
+               (change)="onCollaboratorChange($event)"
+               [checked]="hotelForm.value.collaborators?.includes(collab.value)">
+        {{ collab.viewValue }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="localisation">Localisation</label>
+      <input
+        type="text"
+        id="localisation"
+        formControlName="localisation"
+        class="form-control"
+      >
+    </div>
+
+    <!-- Single Images Input for all images -->
+    <div class="form-group">
+      <label for="images">Images:</label>
+      <input type="file" id="images" multiple (change)="onFileSelected($event)" class="form-control-file" accept="image/*">
+      <div *ngIf="selectedFiles.length > 0" class="mt-2">
+        <p>Selected files:</p>
+        <ul>
+          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Existing Images Display -->
+    <div *ngIf="isEdit && existingImages.length > 0" class="form-group">
+      <label>Existing Images:</label>
+      <div class="existing-images">
+        <div *ngFor="let image of existingImages">
+          <img [src]="getImageUrl(image.image)" alt="Existing Hotel Image" style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;">
+          <!-- Add a button here to remove existing images if needed -->
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="hotelForm.invalid || loading"
+      >
+        {{ loading ? 'Saving...' : (isEdit ? 'Update Hotel' : 'Add Hotel') }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="router.navigate(['/admin/hotels'])"
+        [disabled]="loading"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div> 

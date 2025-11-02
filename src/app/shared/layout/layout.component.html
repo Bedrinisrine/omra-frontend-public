@@ -1,0 +1,74 @@
+<!-- Navigation Bar -->
+<nav class="main-navbar">
+  <div class="navbar-logo">
+    <img src="assets/images/omralogo.jpg" alt="MYOMRA Logo" />
+    <span>MYOMRA</span>
+  </div>
+  <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+    <span class="hamburger"></span>
+    <span class="hamburger"></span>
+    <span class="hamburger"></span>
+  </button>
+  <ul class="navbar-menu" [class.mobile-open]="isMobileMenuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">Accueil</a></li>
+    <li><a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">À propos</a></li>
+    <li><a routerLink="/user/packages" routerLinkActive="active" (click)="closeMobileMenu()">Nos forfaits</a></li>
+    <li><a routerLink="/user/hotels" routerLinkActive="active" (click)="closeMobileMenu()">Hôtels</a></li>
+    <li><a routerLink="/discover" routerLinkActive="active" (click)="closeMobileMenu()">Découvrir</a></li>
+    <li><a routerLink="/design" routerLinkActive="active" (click)="closeMobileMenu()">Concevez votre Omra</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer Section -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section footer-about">
+      <img src="assets/images/omralogo.jpg" alt="Omra Logo" class="footer-logo" />
+      <div class="footer-title">Votre partenaire de confiance pour une Omra sans faille</div>
+      <div class="footer-description">Nous nous engageons à rendre votre voyage spirituel aussi fluide et significatif que possible. Forts de plusieurs années d'expérience et d'une compréhension approfondie des besoins des pèlerins.</div>
+    </div>
+    <div class="footer-section footer-links">
+      <div class="footer-heading">Liens rapides</div>
+      <ul class="footer-list">
+        <li><a routerLink="/">Accueil</a></li>
+        <li><a routerLink="/about">À propos</a></li>
+        <li><a routerLink="/user/packages">Nos forfaits</a></li>
+      </ul>
+    </div>
+    <div class="footer-section footer-pages">
+      <div class="footer-heading">Pages</div>
+      <ul class="footer-list">
+        <li><a routerLink="/discover">Découvrir</a></li>
+        <li><a routerLink="/design">Concevez votre Omra</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section footer-payment">
+      <div class="footer-heading">Moyens de paiement</div>
+      <div class="payment-icons">
+        <img src="assets/images/visalogo.png" alt="Visa" />
+        <img src="assets/images/mastercardlogo.png" alt="MasterCard" />
+        <img src="assets/images/paypallogo.png" alt="PayPal" />
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <button class="footer-lang-btn">
+        <i class="fas fa-globe"></i> Français
+      </button>
+    </div>
+    <span class="footer-copyright">© 2024 MY Omra. Tous droits réservés.</span>
+    <div class="footer-social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</footer> 

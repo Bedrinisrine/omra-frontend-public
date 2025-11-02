@@ -1,0 +1,48 @@
+<div class="admin-package-list-container">
+  <div class="list-header">
+    <h2>Manage Packages</h2>
+    <button class="btn btn-primary" (click)="addPackage()">Add New Package</button>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading packages...
+  </div>
+
+  <table class="table table-striped" *ngIf="!loading && packages.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Package Name</th>
+        <th>Price</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Departure City</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let package of packages">
+        <td>{{ package.id }}</td>
+        <td>{{ package.nom_pak }}</td>
+        <td>{{ package.prix }}</td>
+        <td>{{ package.date_debut }}</td>
+        <td>{{ package.date_fin }}</td>
+        <td>{{ package.ville_depart }}</td>
+        <td>{{ package.qte_package }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="editPackage(package)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deletePackage(package)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && packages.length === 0" class="no-packages">
+    No packages found.
+  </div>
+</div> 
