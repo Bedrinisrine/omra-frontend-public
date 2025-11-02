@@ -149,10 +149,10 @@
     </div>
 
     <!-- Main Content Container for About and Services -->
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;" class="responsive-container">
       <!-- Qui sommes-nous Section -->
       <div class="qui-sommes-nous-section" style="display: flex; align-items: center; justify-content: center; margin: 40px 0; gap: 40px;">
-        <div class="qui-sommes-nous-image" style="flex: none; width: 340px; height: 340px; min-width: 240px; max-width: 400px; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;">
+        <div class="qui-sommes-nous-image" style="flex: none; width: 340px; height: 340px; min-width: 240px; max-width: 400px; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;" class="responsive-image">
           <img src="assets/images/kaaba.jpg" alt="Omra" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;" />
         </div>
         <div class="qui-sommes-nous-content" style="flex: 1; max-width: 900px; padding: 24px 18px; border-radius: 24px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-width: 320px;">
@@ -181,7 +181,7 @@
           <button (click)="scrollServices('left')" style="border: none; background: #fff; font-size: 2rem; cursor: pointer; color: #bfa046; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 50%; width: 40px; height: 40px; margin-right: 8px;">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <div #servicesRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; width: 900px;">
+          <div #servicesRow style="overflow-x: auto; white-space: nowrap; scrollbar-width: none; -ms-overflow-style: none; width: 900px;" class="services-row-responsive">
             <div *ngFor="let service of services; let i = index"
                  class="service-card"
                  (click)="setActiveService(i)"
@@ -227,7 +227,7 @@
 
       <!-- Section Populaires Forfaits Omra -->
       <div class="popular-packages-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;" class="responsive-container">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Nos forfaits Omra populaires</h2>
@@ -308,7 +308,7 @@
 
       <!-- Our Hotels Section -->
       <div class="our-hotels-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;" class="responsive-container">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Our Hotels</h2>
@@ -397,7 +397,7 @@
 
       <!-- Sacred Destinations Section -->
       <div class="sacred-destinations-section" style="margin: 60px 0 0 0; background: #faf6ed; border-radius: 24px; padding: 36px 0 48px 0; position: relative;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;" class="responsive-container">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h2 style="font-size: 2.3rem; font-weight: bold; color: #222; margin-bottom: 0;">Destinations sacrées à explorer</h2>
@@ -527,7 +527,7 @@
 
       <!-- Partner Logos Bar -->
       <div class="partner-logos-section" style="background: #fff; padding: 40px 0; margin: 60px 0; position: relative; border-radius: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;" class="responsive-container">
           <div style="display: flex; align-items: center; justify-content: center; position: relative;">
             <!-- Left Arrow -->
             <button (click)="scrollLogos('left')" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); z-index: 2; border: none; background: #fff; border: 1px solid #e2c76c; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; color: #e2c76c; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">

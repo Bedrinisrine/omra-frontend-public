@@ -63,6 +63,21 @@ body {
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 20px;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 15px;
+  }
+}
+
 .hero-section h1 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.7rem;
@@ -303,67 +318,208 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  .hero-section {
+      height: 50vh;
+      min-height: 300px;
+  }
+
   .hero-section h1 {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
+      line-height: 1.2;
   }
 
   .hero-section p {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
   }
 
   .hero-content {
-      padding: 2rem;
+      padding: 20px;
+      max-width: 100%;
+  }
+
+  .hero-buttons {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+  }
+
+  .hero-buttons .btn {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 1rem;
+  }
+
+  .filter-bar-container {
+      margin-top: -20px;
+      padding: 0 10px;
+  }
+
+  .filter-bar {
+      padding: 15px;
+      max-width: 100%;
+  }
+
+  .filter-tabs {
+      flex-wrap: wrap;
+      gap: 8px;
   }
 
   .filter-inputs {
       flex-direction: column;
       align-items: stretch;
+      gap: 12px;
   }
 
   .input-group {
       width: 100%;
-      flex: none; /* Disable flex-grow */
+      flex: none;
+  }
+
+  .input-group input,
+  .input-group select {
+      width: 100%;
+      font-size: 1rem;
+      padding: 12px;
   }
 
   .btn-search {
       width: 100%;
-  }
-
-  .welcome-section h1 {
-      font-size: 1.8rem;
-  }
-
-  .welcome-section p {
+      padding: 14px;
       font-size: 1rem;
   }
 
+  .welcome-section h1 {
+      font-size: 1.6rem;
+  }
+
+  .welcome-section p {
+      font-size: 0.95rem;
+  }
+
   .navigation-cards {
-      grid-template-columns: 1fr; /* Single column on small screens */
+      grid-template-columns: 1fr;
+      gap: 1rem;
+  }
+
+  .main-navbar {
+      padding: 0 15px;
+      height: auto;
+      min-height: 56px;
+  }
+
+  .navbar-menu {
+      display: none;
+  }
+
+  .navbar-logo span {
+      font-size: 1rem;
+  }
+
+  .navbar-logo img {
+      height: 28px;
   }
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+      height: 45vh;
+      min-height: 280px;
+  }
+
   .hero-section h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
   }
 
   .hero-section p {
-      font-size: 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
   }
 
-  .hero-buttons .btn {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-  }
-
-  .filter-bar {
+  .hero-content {
       padding: 15px;
   }
 
+  .hero-buttons .btn {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      margin: 5px 0;
+  }
+
+  .filter-bar {
+      padding: 12px;
+      border-radius: 8px;
+  }
+
+  .filter-tabs {
+      margin-bottom: 12px;
+  }
+
   .tab-button {
-      font-size: 1rem;
-      padding: 6px 12px;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+  }
+
+  .input-group {
+      margin-bottom: 10px;
+  }
+
+  .welcome-section {
+      padding: 30px 15px;
+  }
+
+  .welcome-section h1 {
+      font-size: 1.4rem;
+  }
+
+  .main-navbar {
+      padding: 10px 12px;
+  }
+
+  .navbar-logo span {
+      font-size: 0.9rem;
+  }
+
+  .navbar-logo img {
+      height: 24px;
+  }
+
+  /* Make all sections responsive */
+  .packages-section,
+  .hotels-section {
+      padding: 20px 10px;
+  }
+
+  .section-title {
+      font-size: 1.5rem;
+      padding: 0 10px;
+  }
+
+  /* Cards grid */
+  .package-card,
+  .hotel-card {
+      margin-bottom: 15px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .hero-section h1 {
+      font-size: 1.3rem;
+  }
+
+  .hero-section p {
+      font-size: 0.85rem;
+  }
+
+  .filter-bar {
+      padding: 10px;
+  }
+
+  .tab-button {
+      font-size: 0.85rem;
+      padding: 6px 10px;
   }
 }
 
