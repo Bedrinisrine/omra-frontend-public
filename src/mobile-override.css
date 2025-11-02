@@ -35,6 +35,54 @@
     overflow-x: scroll !important;
   }
 
+  /* Filter bar specific fixes */
+  .filter-tabs-modern {
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  .tab-button-modern {
+    width: 100% !important;
+    padding: 10px 16px !important;
+    justify-content: center !important;
+    font-size: 0.95rem !important;
+  }
+
+  .filter-bar-modern {
+    padding: 12px 15px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .filter-inputs-modern {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  .input-group-modern {
+    width: 100% !important;
+    min-width: 100% !important;
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+
+  .btn-search-modern {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 10px !important;
+    justify-content: center !important;
+  }
+
+  .filter-bar-container {
+    padding: 0 10px !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
   /* Fix padding and margins */
   [style*="padding: 0 40px"],
   [style*="padding: 40px"] {
@@ -108,6 +156,25 @@
   button:not([style*="position: absolute"]) {
     width: 100% !important;
     margin-bottom: 10px !important;
+  }
+
+  /* Filter bar extra small fixes */
+  .filter-tabs-modern {
+    gap: 6px !important;
+  }
+
+  .tab-button-modern {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .filter-bar-modern {
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .filter-bar-container {
+    padding: 0 8px !important;
   }
 }
 

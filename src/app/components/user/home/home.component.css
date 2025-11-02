@@ -147,6 +147,15 @@ body {
   justify-content: center; /* Center the filter bar */
   padding: 0 15px; /* Add some padding on smaller screens */
   box-sizing: border-box;
+  max-width: 100vw; /* Prevent overflow */
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+@media (max-width: 768px) {
+  .filter-bar-container {
+    margin-top: -20px;
+    padding: 0 10px;
+  }
 }
 
 .filter-bar {
@@ -589,16 +598,64 @@ body {
   box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
   padding: 18px 28px 18px 28px;
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .filter-bar-modern {
+    padding: 12px 15px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar-modern {
+    padding: 10px 12px !important;
+    border-radius: 12px;
+  }
 }
 
 .filter-tabs-modern {
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Mobile: Stack tabs vertically or make them full width */
+@media (max-width: 768px) {
+  .filter-tabs-modern {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .tab-button-modern {
+    width: 100% !important;
+    padding: 10px 16px !important;
+    justify-content: center;
+    font-size: 0.95rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-tabs-modern {
+    gap: 6px;
+  }
+
+  .tab-button-modern {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
 }
 
 .tab-button-modern {
@@ -635,6 +692,17 @@ body {
   gap: 10px; /* Further reduce gap between input groups */
   flex-wrap: wrap;
   margin-top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .filter-inputs-modern {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
 }
 
 .input-group-modern {
@@ -651,6 +719,16 @@ body {
   position: relative;
   border: 1.5px solid #ececec;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .input-group-modern {
+    width: 100% !important;
+    min-width: 100% !important;
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 .input-group-modern label {
