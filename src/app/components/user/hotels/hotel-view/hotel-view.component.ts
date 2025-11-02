@@ -146,7 +146,14 @@ export class HotelViewComponent implements OnInit {
   getImageUrl(imagePath: string): string {
     if (!imagePath) return 'assets/images/no-image.png';
     if (imagePath.startsWith('http')) return imagePath;
-    return `${environment.apiUrl}${imagePath}`;
+    // If path starts with assets, use it directly (frontend asset)
+    if (imagePath.startsWith('assets/')) return `/${imagePath}`;
+    // If path starts with /media, it's a backend media path
+    if (imagePath.startsWith('/media/') && environment.apiUrl) {
+      return `${environment.apiUrl}${imagePath}`;
+    }
+    // Otherwise, treat as relative asset path
+    return `/${imagePath}`;
   }
 
   showHotelDetails(hotel: Hotel) {
