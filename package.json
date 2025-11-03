@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production && npm run postbuild",
+    "postbuild": "node scripts/copy-index.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:hotels_front": "node dist/hotels_front/server/server.mjs"
